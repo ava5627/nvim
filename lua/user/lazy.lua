@@ -38,7 +38,7 @@ lazy.setup({
                 keymap = {
                     accept = "<C-f>",
                     accept_word = "<A-f>",
-                    accept_line = false,
+                    accept_line = "<A-g>",
                     next = "<A-]>",
                     prev = "<A-[>",
                     dismiss = "<C-]>",
@@ -192,6 +192,10 @@ lazy.setup({
                 topdelete = { text = "" },
                 changedelete = { text = "▎" },
             },
+        },
+        keys = {
+            { "]c", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
+            { "[c", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
         }
     },
     {
