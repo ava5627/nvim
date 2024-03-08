@@ -73,6 +73,7 @@ return {
             "ltex",
             "gopls",
             "tsserver",
+            "nil_ls"
         },
         on_attach = function(client, bufnr)
             if client.server_capabilities.documentHighlightProvider then
@@ -143,7 +144,17 @@ return {
         vim.g.rustaceanvim = { server = server_opts }
     end,
     dependencies = {
-        { "folke/neodev.nvim",                 config = true },
+        {
+            "folke/neodev.nvim",
+            opts = {
+                override = function(root, library)
+                    if root:find("nvim") then
+                        library.enabled = true
+                        library.plugins = true
+                    end
+                end
+            }
+        },
         {
             "williamboman/mason.nvim",
             opts = { ui = { border = "rounded" } }

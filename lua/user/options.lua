@@ -1,7 +1,5 @@
 if vim.fn.has("mac") == 1 then
     vim.g.python3_host_prog = '/opt/homebrew/bin/python'
-else
-    vim.g.python3_host_prog = '/usr/bin/python3'
 end
 
 local options = {
