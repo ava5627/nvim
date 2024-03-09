@@ -132,7 +132,10 @@ lazy.setup({
         end
     },
     "tpope/vim-repeat",
-    { "norcalli/nvim-colorizer.lua", config = true },
+    {
+        "norcalli/nvim-colorizer.lua",
+        opts = { "*", css = { hsl_fn = true } },
+    },
     {
         "lervag/vimtex",
         config = function()
@@ -144,8 +147,8 @@ lazy.setup({
         end,
         ft = "tex",
     },
-    { "numToStr/Comment.nvim",       config = true },
-    { "folke/todo-comments.nvim",    config = true },
+    { "numToStr/Comment.nvim",    config = true },
+    { "folke/todo-comments.nvim", config = true },
     {
         "ava5627/ACR.nvim",
         dir = "~/repos/ACR",
@@ -205,7 +208,7 @@ lazy.setup({
         keys = {
             { "<leader>gs", ":G<CR>",                        desc = "Git status" },
             { "<leader>gp", ":G push<CR>",                   desc = "Git push" },
-            { "<leader>gv", ":Gvdiffsplit<CR>",           desc = "Git vdiffsplit" },
+            { "<leader>gv", ":Gvdiffsplit<CR>",              desc = "Git vdiffsplit" },
             { "<leader>gj", ":diffget //2 | diffupdate<CR>", desc = "Choose left" },
             { "<leader>gk", ":diffget //3 | diffupdate<CR>", desc = "Choose right" },
         }

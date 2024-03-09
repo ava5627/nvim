@@ -68,8 +68,8 @@ kmap("v", "<", "<gv", opts("Shift left"))
 kmap("v", ">", ">gv", opts("Shift right"))
 
 -- Move selection up/down
-kmap("v", "<A-j>", ":m '>+1<CR>gv=gv", opts("Move selection down"))
-kmap("v", "<A-k>", ":m '<-2<CR>gv=gv", opts("Move selection up"))
+kmap("v", "J", ":m '>+1<CR>gv=gv", opts("Move selection down"))
+kmap("v", "K", ":m '<-2<CR>gv=gv", opts("Move selection up"))
 
 -- paste without copying selection
 kmap("v", "p", '"_dP', opts("Paste"))
