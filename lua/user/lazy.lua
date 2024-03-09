@@ -184,6 +184,7 @@ lazy.setup({
     "nvim-treesitter/nvim-treesitter-refactor",
     {
         "lewis6991/gitsigns.nvim",
+        lazy = false,
         opts = {
             signs = {
                 add = { text = "▎" },
@@ -200,10 +201,11 @@ lazy.setup({
     },
     {
         "tpope/vim-fugitive",
+        lazy = false,
         keys = {
             { "<leader>gs", ":G<CR>",                        desc = "Git status" },
             { "<leader>gp", ":G push<CR>",                   desc = "Git push" },
-            { "<leader>gv", ":Gvdiffsplit\\!<CR>",           desc = "Git vdiffsplit" },
+            { "<leader>gv", ":Gvdiffsplit<CR>",           desc = "Git vdiffsplit" },
             { "<leader>gj", ":diffget //2 | diffupdate<CR>", desc = "Choose left" },
             { "<leader>gk", ":diffget //3 | diffupdate<CR>", desc = "Choose right" },
         }
