@@ -118,6 +118,11 @@ return {
                     }
                 }
             },
+            ["nil"] = {
+                formatting = {
+                    command = { "alejandra" }
+                },
+            },
         },
     },
     config = function(_, opts)

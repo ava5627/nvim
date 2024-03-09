@@ -29,5 +29,13 @@ augroup("trim_whitespace", {})
 autocmd("BufWritePre", {
     group = "trim_whitespace",
     pattern = "*",
-    command = "%s/\\s\\+$//e",
+    -- command = "%s/\\s\\+$//e",
+    callback = function()
+        if vim.b[0].editorconfig and vim.b[0].editorconfig.trim_trailing_whitespace == "false" then
+            return
+        end
+        vim.cmd([[
+            %s/\s\+$//e
+        ]])
+    end,
 })
