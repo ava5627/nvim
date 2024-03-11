@@ -91,14 +91,24 @@ return {
         end,
         settings = {
             pylsp = {
+                configurationSources = { "flake8" },
                 plugins = {
                     pycodestyle = {
-                        enabled = true,
-                        maxLineLength = 120,
-                        ignore = {}
+                        enabled = false,
                     },
                     jedi_completion = {
                         eager = true,
+                    },
+                    mccabe = {
+                        enabled = false,
+                    },
+                    pyflakes = {
+                        enabled = false,
+                    },
+                    flake8 = {
+                        enabled = true,
+                        maxLineLength = 120,
+                        ignore = { "E265" },
                     },
                     rope_autoimport = {
                         enabled = true,
@@ -122,6 +132,13 @@ return {
                 formatting = {
                     command = { "alejandra" }
                 },
+                nix = {
+                    maxMemoryMB = 6144,
+                    flake = {
+                        autoArchive = true,
+                        autoEvalInputs = true,
+                    }
+                }
             },
         },
     },
