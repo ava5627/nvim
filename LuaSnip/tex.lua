@@ -1,0 +1,196 @@
+-- global !p
+-- def math():
+--     return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+--
+-- def not_math():
+--     return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+--
+-- def comment():
+--     return vim.eval('vimtex#syntax#in_comment()') == '1'
+--
+-- def env(name):
+--     [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+--     return x != '0' and y != '0'
+-- endglobal
+--
+-- snippet date "date" w
+-- `date "+%B %d, %Y"`
+-- endsnippet
+--
+-- snippet time "time" w
+-- `date "+%H:%M:%S"`
+-- endsnippet
+--
+-- snippet template "basic template"
+-- \documentclass{${1:article}}
+--
+-- \usepackage[utf8]{inputenc}
+-- \usepackage{amsmath}
+-- \usepackage{graphicx}
+--
+--
+-- \title{`!p from pathlib import Path
+-- p = Path(path).parent
+-- snip.rv = f"{p.name}"
+-- `}
+-- \author{Austin Harris, ash170000}
+-- \date{`date "+%B %d, %Y"`}
+--
+-- \begin{document}
+--
+-- \maketitle
+--
+-- $0
+--
+-- \end{document}
+--
+-- endsnippet
+--
+--
+-- snippet sympy "sympy block " w
+-- sympy $1 sympy$0
+-- endsnippet
+--
+-- priority 10000
+-- snippet 'sympy(.*)sympy' "evaluate sympy" wr
+-- `!p
+-- from sympy import *
+-- x, y, z, t = symbols('x y z t')
+-- k, m, n = symbols('k m n', integer=True)
+-- f, g, h = symbols('f g h', cls=Function)
+-- init_printing()
+-- snip.rv = eval('latex(' + match.group(1).replace('\\', '')
+--     .replace('^', '**') \
+--     .replace('{', '(') \
+--     .replace('}', ')') + ')')
+-- `
+-- endsnippet
+--
+-- snippet dm "display math" w
+-- \[
+-- 	$1
+-- \]
+-- endsnippet
+--
+-- context "math()"
+-- snippet // "Fraction" iA
+-- \\frac{$1}{$2}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet '(((\d+)|(\d*)(\\)?([A-Za-z]+))((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+-- \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet / "vis Fraction" i
+-- \\frac{${VISUAL}}{$1}$0
+-- endsnippet
+--
+-- priority 1000
+-- context "math()"
+-- snippet '^.*\)/' "() Fraction" wrA
+-- `!p
+-- stripped = match.string[:-1]
+-- depth = 0
+-- i = len(stripped) - 1
+-- while True:
+--     if stripped[i] == ')': depth += 1
+--     if stripped[i] == '(': depth -= 1
+--     if depth == 0: break;
+--     i -= 1
+-- snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+-- `{$1}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet '([\^_])(.)' "Super/sub script" wrA
+-- `!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2)`$1}$0
+-- endsnippet
+--
+-- global !p
+-- def remove_autopair(left_char, right_char):
+--     if len(snip.buffer[snip.line]) > snip.cursor[1] and snip.buffer[snip.line][snip.cursor[1]] == right_char:
+--         snip.buffer[snip.line]=re.sub(f'\\\\\\{left_char}\\{right_char}', '', snip.buffer[snip.line])
+--         snip.cursor.set(snip.line, snip.cursor[1]-2)
+-- endglobal
+--
+-- context "math()"
+-- pre_expand "remove_autopair('(',')')"
+-- snippet \( "left( right)" i
+-- \left($1\right)$0
+-- endsnippet
+--
+-- context "math()"
+-- pre_expand "remove_autopair('[',']')"
+-- snippet \[ "left[ right]" i
+-- \left[$1\right]$0
+-- endsnippet
+--
+-- context "math()"
+-- pre_expand "remove_autopair('{','}')"
+-- snippet \{ "left{ right}" i
+-- \left{$1\right}$0
+-- endsnippet
+--
+-- snippet plot "Plot" w
+--     \centering
+--     \begin{tikzpicture}
+--         \begin{axis}[
+--             xmin= ${2:-10}, xmax= ${3:10},
+--             ymin= ${4:-10}, ymax = ${5:10},
+--             axis lines = middle,
+--         ]
+--             \addplot[domain=$2:$3, samples=${6:100}]{$7};
+--         \end{axis}
+--     \end{tikzpicture}
+--     \caption{$8}
+--     \label{${9:$8}}
+-- endsnippet
+--
+-- global !p
+-- def advance_on_empty(tab=-1):
+--     if (tab == -1 or tab == snip.context['tab']) and t[snip.context['tab']] == '':
+--         vim.command('call feedkeys("\<C-R>=UltiSnips#JumpForwards()\<CR>")')
+--
+-- def clean_up(tab=0, lwidth=1, rwidth=1, clean_text=''):
+--     snip.context['tab'] = snip.tabstop
+--     if snip.tabstop == tab and snip.tabstops[2].current_text == clean_text:
+--         line = snip.buffer[snip.line]
+--         snip.buffer[snip.line] = line[:snip.tabstops[2].start[1]-lwidth] + line[snip.tabstops[2].end[1]+rwidth:]
+--         snip.cursor.set(snip.cursor[0], -1)
+--
+-- endglobal
+--
+-- context "{'tab': -1}"
+-- post_jump "clean_up(0, 1, 1, '')"
+-- snippet img "Add image"
+-- `!p advance_on_empty(2)
+-- `
+-- \includegraphics[${2:width=\textwidth}]{$1}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet \sum "Sum" i
+-- \sum_{$1}^{$2}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet \prod "Product" i
+-- \prod_{$1}^{$2}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet \lim "Limit" i
+-- \lim_{${1:x} \to ${2:\infty}}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet sq "Square root" i
+-- \sqrt{$1}$0
+-- endsnippet
+--
+-- context "math()"
+-- snippet "([A-Za-z])#([a-zA-Z0-9])" "Index" wrA
+-- `!p snip.rv = match.group(1)`^{(`!p snip.rv = match.group(2)`)}$0
+-- endsnippet

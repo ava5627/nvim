@@ -110,7 +110,6 @@ return {
     config = function(_, opts)
         local cmp = require("cmp")
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        require("luasnip/loaders/from_vscode").lazy_load()
         cmp.setup(opts)
         cmp.setup.cmdline("/", {
             completion = { autocomplete = false },

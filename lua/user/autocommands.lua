@@ -2,9 +2,9 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local kmap = vim.keymap.set
 
-augroup("Filetype", {})
+augroup("easy_quit", {})
 autocmd("FileType", {
-    group = "Filetype",
+    group = "easy_quit",
     pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "fugitive", "gitcommit", "git", "toggleterm" },
     callback = function()
         kmap("n", "q", ":close<CR>", { silent = true, noremap = true, buffer = true })
