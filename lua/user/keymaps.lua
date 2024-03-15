@@ -1,5 +1,6 @@
-local function opts(desc)
-    return { desc = desc, remap = false }
+local function opts(desc, o)
+    local default = { desc = desc, remap = false }
+    return o and vim.tbl_extend("force", default, o) or default
 end
 
 local kmap = vim.keymap.set
@@ -9,7 +10,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- vim.cmd("nmap <BS> <Space>")
-kmap({ "n", "v", "o" }, "<BS>", "<Space>", { remap = true, desc = "Secondary leader" })
+kmap({ "n", "v", "o" }, "<BS>", "<Space>", opts("Secondary leader", { remap = true }))
 
 -- save and quit
 kmap("n", "<leader>ww", ":w<cr>", opts("Save"))
@@ -51,13 +52,12 @@ kmap("n", "<leader>v", "<C-w>v", opts("Open vertical split"))
 kmap("n", "<leader>s", "<C-w>s", opts("Open horizontal split"))
 
 -- Insert Mode
-kmap("i", "jk", "<esc>", opts("Escape"))
 kmap("i", "<A-h>", "<left>", opts("Move cursor left"))
 kmap("i", "<A-j>", "<down>", opts("Move cursor down"))
 kmap("i", "<A-k>", "<up>", opts("Move cursor up"))
 kmap("i", "<A-l>", "<right>", opts("Move cursor right"))
 
--- Delete backwards
+-- Delete
 kmap("i", "<A-d>", "<C-o>dw", opts("Delete word"))
 
 -- Paste in insert mode

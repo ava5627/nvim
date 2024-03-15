@@ -10,8 +10,7 @@ return {
         },
         shade_terminals = false,
     },
-    config = function(_, opts)
-        require("toggleterm").setup(opts)
+    init = function()
         vim.api.nvim_create_autocmd("TermOpen", {
             pattern = "term://*",
             callback = function()
@@ -25,7 +24,7 @@ return {
         local python = require("toggleterm.terminal").Terminal:new({ cmd = "ipython3", hidden = true, direction = "float" })
         return {
             { "<C-t>p", function() python:toggle() end, desc = "Toggle ipython terminal", mode = { "n", "t" } },
-            { "<esc>",  [[<C-\><C-n>]],                 desc = "Close terminal",          mode = "t" },
+            { "<esc>",  [[<C-\><C-n>]],                 desc = "Normal mode",             mode = "t" },
             { "<C-h>",  [[<C-\><C-n><C-W>h]],           desc = "Move left",               mode = "t" },
             { "<C-j>",  [[<C-\><C-n><C-W>j]],           desc = "Move down",               mode = "t" },
             { "<C-k>",  [[<C-\><C-n><C-W>k]],           desc = "Move up",                 mode = "t" },

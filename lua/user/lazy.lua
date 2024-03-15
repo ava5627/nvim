@@ -97,10 +97,7 @@ lazy.setup({
     "stevearc/dressing.nvim",
     {
         "rcarriga/nvim-notify",
-        config = function(_, opts)
-            require("notify").setup(opts)
-            vim.notify = require("notify")
-        end,
+        init = function() vim.notify = require("notify") end,
         opts = { render = "compact", max_height = 10, max_width = 100, timeout = 500 },
     },
     { "folke/which-key.nvim", config = true },

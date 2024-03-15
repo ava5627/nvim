@@ -7,8 +7,7 @@ return {
         stop_eof = false,     -- Stop at <EOF> when scrolling downwards
         easing_function = 'sine', -- Default easing function
     },
-    config = function(_, opts)
-        require('neoscroll').setup(opts)
+    init = function()
         local t    = {}
         t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '200' } }
         t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '200' } }
