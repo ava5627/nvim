@@ -111,7 +111,7 @@ return {
                         extendIgnore = { "E265" },
                     },
                     rope_autoimport = {
-                        enabled = true,
+                        enabled = false,
                         completions = {
                             enabled = false
                         }
