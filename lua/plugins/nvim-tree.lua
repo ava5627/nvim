@@ -1,4 +1,3 @@
-local home = vim.fn.expand("~")
 local function on_attach(bufnr)
     local nt_api = require("nvim-tree.api")
     local function opts(desc, o)
@@ -19,7 +18,6 @@ end
 
 return {
     "kyazdani42/nvim-tree.lua",
-    dev = vim.loop.fs_stat(home .. "/repos/nvim-tree.lua") ~= nil,
     opts = {
         hijack_cursor = true,
         sync_root_with_cwd = true,
