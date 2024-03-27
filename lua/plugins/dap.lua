@@ -67,7 +67,10 @@ return {
                 { "<leader>du", dapui.toggle, desc = "Toggle UI" },
                 { "<leader>de", dapui.eval,   desc = "Eval" },
             }
-        end
+        end,
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+        }
     },
     {
         "ravenxrz/DAPInstall.nvim",
