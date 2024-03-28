@@ -1,3 +1,15 @@
+local layout_config = {
+    preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+    prompt_position = "top",
+    width = function(_, max_columns, _)
+        return math.min(max_columns, 80)
+    end,
+
+    height = function(_, _, max_lines)
+        return math.min(max_lines, 15)
+    end,
+}
+
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -32,18 +44,19 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        theme = "dropdown",
                         previewer = false,
+                        layout_config = layout_config,
                     },
                     buffers = {
-                        theme = "dropdown",
                         previewer = false,
+                        layout_config = layout_config,
                     },
                 },
                 extensions = {
                     harpoon = {
-                        theme = "dropdown",
                         initial_mode = "insert",
+                        prompt_position = "top",
+                        layout_config = layout_config,
                     }
                 },
             }
@@ -74,7 +87,7 @@ return {
                     end,
                     desc = "Harpoon marks"
                 },
-                { "mm",    require("harpoon.mark").add_file,                  desc = "Add file to harpoon" },
+                { "mm",    require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
                 { "<A-1>", function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
                 { "<A-2>", function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
                 { "<A-3>", function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
