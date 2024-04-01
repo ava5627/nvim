@@ -195,19 +195,43 @@ lazy.setup({
             },
         },
         keys = {
-            { "]v", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
-            { "[v", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
+            { "]c", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
+            { "[c", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
         }
     },
     {
-        "tpope/vim-fugitive",
+
+        "sindrets/diffview.nvim", -- optional - Diff integration
+        lazy = false,
+        opts = function()
+            local quit = {
+                { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "close diffview" } }
+            }
+            return {
+                keymaps = {
+                    view = quit,
+                    file_panel = quit,
+                    file_history_panel = quit
+                }
+            }
+        end,
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<CR>",          desc = "open diff" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>",   desc = "open history" },
+            { "<leader>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "open file history" },
+        },
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",         -- required
+            "sindrets/diffview.nvim",        -- optional - Diff integration
+            "nvim-telescope/telescope.nvim", -- optional
+        },
+        config = true,
         lazy = false,
         keys = {
-            { "<leader>gs", ":G<CR>",                        desc = "Git status" },
-            { "<leader>gp", ":G push<CR>",                   desc = "Git push" },
-            { "<leader>gv", ":Gvdiffsplit!<CR>",             desc = "Git vdiffsplit" },
-            { "<leader>gj", ":diffget //2 | diffupdate<CR>", desc = "Choose left" },
-            { "<leader>gk", ":diffget //3 | diffupdate<CR>", desc = "Choose right" },
+            { "<leader>gs", "<cmd>Neogit<CR>", desc = "Git status" },
         }
     },
 }, {
