@@ -195,8 +195,8 @@ lazy.setup({
             },
         },
         keys = {
-            { "]c", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
-            { "[c", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
+            { "]v", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
+            { "[v", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
         }
     },
     {
@@ -205,7 +205,7 @@ lazy.setup({
         keys = {
             { "<leader>gs", ":G<CR>",                        desc = "Git status" },
             { "<leader>gp", ":G push<CR>",                   desc = "Git push" },
-            { "<leader>gv", ":Gvdiffsplit<CR>",              desc = "Git vdiffsplit" },
+            { "<leader>gv", ":Gvdiffsplit!<CR>",             desc = "Git vdiffsplit" },
             { "<leader>gj", ":diffget //2 | diffupdate<CR>", desc = "Choose left" },
             { "<leader>gk", ":diffget //3 | diffupdate<CR>", desc = "Choose right" },
         }
