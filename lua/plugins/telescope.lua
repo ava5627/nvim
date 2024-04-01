@@ -45,17 +45,18 @@ return {
                 pickers = {
                     find_files = {
                         previewer = false,
+                        sorting_strategy = "ascending",
                         layout_config = layout_config,
                     },
                     buffers = {
                         previewer = false,
+                        sorting_strategy = "ascending",
                         layout_config = layout_config,
                     },
                 },
                 extensions = {
                     harpoon = {
                         initial_mode = "insert",
-                        prompt_position = "top",
                         layout_config = layout_config,
                     }
                 },
