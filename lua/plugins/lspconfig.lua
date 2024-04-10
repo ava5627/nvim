@@ -108,7 +108,7 @@ return {
                     flake8 = {
                         enabled = true,
                         maxLineLength = 120,
-                        extendIgnore = { "E265" },
+                        extendIgnore = { "E265", "E203" },
                     },
                     rope_autoimport = {
                         enabled = false,

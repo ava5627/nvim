@@ -32,9 +32,9 @@ return {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
                             ["<C-S-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
-                            ["<C-S-K>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
-                            ["<C-A-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
-                            ["<C-A-K>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
+                            ["<C-S-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
+                            ["<A-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
+                            ["<A-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
                         },
                         n = {
                             ["<C-j>"] = actions.move_selection_next,
