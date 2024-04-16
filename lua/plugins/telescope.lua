@@ -62,13 +62,17 @@ return {
                 },
             }
         end,
-        keys = {
-            { "<leader>oo", "<cmd>Telescope find_files<cr>",           desc = "Find files" },
-            { "<leader>og", "<cmd>Telescope live_grep<cr>",            desc = "Grep" },
-            { "<leader>os", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
-            { "<leader>op", "<cmd>Telescope project project<cr>",      desc = "Projects" },
-            { "<leader>oi", "<cmd>Telescope buffers<cr>",              desc = "Buffers" },
-        }
+        keys = function()
+            local telescope = require("telescope.builtin")
+            return {
+                { "<leader>oo", telescope.find_files,           desc = "Find files" },
+                { "<leader>og", telescope.live_grep,            desc = "Grep" },
+                { "<leader>os", telescope.lsp_document_symbols, desc = "Document symbols" },
+                { "<leader>oi", telescope.buffers,              desc = "Buffers" },
+                { "<leader>od", telescope.git_status,           desc = "Changed Files" },
+                { "<leader>oc", telescope.diagnostics,          desc = "Go to diagnostics" },
+            }
+        end,
     },
     {
         "ThePrimeagen/harpoon",
@@ -88,11 +92,11 @@ return {
                     end,
                     desc = "Harpoon marks"
                 },
-                { "mm",    require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
-                { "<A-1>", function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
-                { "<A-2>", function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
-                { "<A-3>", function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
-                { "<A-4>", function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
+                { "<leader>mm", require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
+                { "<A-1>",      function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
+                { "<A-2>",      function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
+                { "<A-3>",      function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
+                { "<A-4>",      function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
             }
         end
     },

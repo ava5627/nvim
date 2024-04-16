@@ -8,7 +8,6 @@ return {
             { "gi",         telescope.lsp_implementations,  desc = "Go to implementation" },
             { "grf",        telescope.lsp_references,       desc = "Go to references" },
             { "gt",         telescope.lsp_type_definitions, desc = "Go to type definition" },
-            { "<leader>pc", telescope.diagnostics,          desc = "Go to diagnostics" },
             { "gD",         vim.lsp.buf.declaration,        desc = "Go to declaration" },
             { "gs",         vim.lsp.buf.signature_help,     desc = "Signature help" },
             { "gh",         vim.lsp.buf.hover,              desc = "Hover" },

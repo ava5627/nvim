@@ -72,7 +72,8 @@ lazy.setup({
         keys = {
             { "<leader>q", ":Bdelete<CR>",       desc = "Delete buffer" },
             { "<leader>f", ":Bdelete force<CR>", desc = "Force delete buffer" },
-        }
+        },
+        cmd = { "Bdelete", "Bdelete force" },
     },
     {
         "ghillb/cybu.nvim",

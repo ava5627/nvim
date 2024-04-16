@@ -29,9 +29,11 @@ return {
             },
             icons = {
                 git_placement = "after",
+                show = {
+                    folder_arrow = false,
+                },
                 glyphs = {
                     default = "󰈔",
-                    symlink = "",
                     git = {
                         unstaged = "●",
                         ignored = "●",
