@@ -11,7 +11,7 @@ return {
             colors.gitSigns.change = colors.blue
         end,
         on_highlights = function(highlights, colors)
-            highlights.DiagnosticUnnecessary = { fg = colors.fg_dark, undercurl = true, sp = colors.warning }
+            highlights.DiagnosticUnnecessary = { undercurl = true, sp = colors.warning }
         end
     },
     config = function(_, opts)
