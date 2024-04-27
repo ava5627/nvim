@@ -162,7 +162,15 @@ return {
         for _, server in pairs(opts.servers) do
             lspconfig[server].setup(server_opts)
         end
-        vim.g.rustaceanvim = { server = server_opts }
+        vim.g.rustaceanvim = {
+            server = {
+                on_attach = opts.on_attach,
+                default_settings = {
+                    ["rust-analyzer"] = opts.settings["rust-analyzer"],
+                }
+            },
+            dap = {}
+        }
     end,
     dependencies = {
         {

@@ -145,8 +145,19 @@ lazy.setup({
         end,
         ft = "tex",
     },
-    { "numToStr/Comment.nvim",    config = true },
-    { "folke/todo-comments.nvim", config = true },
+    { "numToStr/Comment.nvim", config = true },
+    {
+        "folke/todo-comments.nvim",
+        config = true,
+        keys = function()
+            local todo = require("todo-comments")
+            return {
+                { "]t",         todo.jump_next,           desc = "Next todo" },
+                { "[t",         todo.jump_prev,           desc = "Previous todo" },
+                { "<leader>tt", "<cmd>TodoTelescope<CR>", desc = "Search todos" },
+            }
+        end
+    },
     {
         "ava5627/ACR.nvim",
         dir = "~/repos/ACR",

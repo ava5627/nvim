@@ -74,12 +74,12 @@ return {
     },
     {
         "ravenxrz/DAPInstall.nvim",
+        enabled = false,
         config = function()
             local dap_install = require("dap-install")
             dap_install.setup {}
             dap_install.config("python", {})
-            dap_install.config("go_delve", {})
-            dap_install.config("ccppr_lldb", {})
+            -- dap_install.config("ccppr_vsc", {})
         end
     },
     { "theHamsta/nvim-dap-virtual-text", config = true },
