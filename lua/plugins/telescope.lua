@@ -1,13 +1,17 @@
-local layout_config = {
-    preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-    prompt_position = "top",
-    width = function(_, max_columns, _)
-        return math.min(max_columns, 80)
-    end,
+local picker_theme = {
+    previewer = false,
+    sorting_strategy = "ascending",
+    layout_config = {
+        preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+        prompt_position = "top",
+        width = function(_, max_columns, _)
+            return math.min(max_columns, 80)
+        end,
 
-    height = function(_, _, max_lines)
-        return math.min(max_lines, 15)
-    end,
+        height = function(_, _, max_lines)
+            return math.min(max_lines, 15)
+        end,
+    }
 }
 
 return {
@@ -43,22 +47,8 @@ return {
                     },
                 },
                 pickers = {
-                    find_files = {
-                        previewer = false,
-                        sorting_strategy = "ascending",
-                        layout_config = layout_config,
-                    },
-                    buffers = {
-                        previewer = false,
-                        sorting_strategy = "ascending",
-                        layout_config = layout_config,
-                    },
-                },
-                extensions = {
-                    harpoon = {
-                        initial_mode = "insert",
-                        layout_config = layout_config,
-                    }
+                    find_files = picker_theme,
+                    buffers = picker_theme
                 },
             }
         end,
@@ -86,9 +76,7 @@ return {
                 {
                     "<leader>h",
                     function()
-                        telescope_harpoon(require("telescope.themes").get_dropdown {
-                            previewer = false, initial_mode = "normal", prompt_title = "Harpoon"
-                        })
+                        telescope_harpoon(picker_theme)
                     end,
                     desc = "Harpoon marks"
                 },

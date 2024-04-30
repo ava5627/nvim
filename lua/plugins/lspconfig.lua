@@ -92,6 +92,9 @@ return {
             pylsp = {
                 configurationSources = { "flake8" },
                 plugins = {
+                    autopep8 = {
+                        enabled = false,
+                    },
                     pycodestyle = {
                         enabled = false,
                     },
@@ -114,6 +117,9 @@ return {
                         completions = {
                             enabled = false
                         }
+                    },
+                    black = {
+                        enabled = true,
                     },
                 }
             },

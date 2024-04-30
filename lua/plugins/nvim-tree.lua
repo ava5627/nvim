@@ -52,9 +52,6 @@ return {
             show_on_dirs = true,
         },
     },
-    init = function()
-        vim.api.nvim_set_hl(0, "NvimTreeExecFile", { link = "Normal" })
-    end,
     keys = {
         {
             "<leader>e",

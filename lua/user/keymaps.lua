@@ -13,15 +13,15 @@ vim.g.maplocalleader = " "
 kmap({ "n", "v", "o" }, "<BS>", "<Space>", opts("Secondary leader", { remap = true }))
 
 -- save and quit
-kmap("n", "<leader>ww", ":w<CR>", opts("Save"))
-kmap("n", "<leader>wq", ":bdelete<CR>", opts("Save and close buffer"))
-kmap("n", "<A-q>", ":bdelete<CR>", opts("Close buffer"))
+kmap("n", "<leader>ww", "<cmd>w<CR>", opts("Save"))
+kmap("n", "<leader>wq", "<cmd>bdelete<CR>", opts("Save and close buffer"))
+kmap("n", "<A-q>", "<cmd>bdelete<CR>", opts("Close buffer"))
 
 -- navigation
 kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
 
 -- Clear search highlights
-kmap("n", "<A-a>", ":nohl<CR>", opts("Clear search highlights"))
+kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
 
 -- Insert line above/below without leaving normal mode
 kmap("n", "<a-i>", "moO<esc>`o", opts("Insert line above"))
@@ -36,16 +36,16 @@ kmap("n", "<C-p>", "<C-w>p", opts("Previous window"))
 kmap("n", "<C-q>", "<C-w>q", opts("Close window"))
 
 -- Quick fix list
-kmap("n", "<leader>co", ":copen<CR><C-w>p", opts("Open quickfix list"))
-kmap("n", "<leader>cc", ":cclose<CR>", opts("Close quickfix list"))
-kmap("n", "<leader>cn", ":cnext<CR>", opts("Next quickfix item"))
-kmap("n", "<leader>cp", ":cprev<CR>", opts("Previous quickfix item"))
+kmap("n", "<leader>co", "<cmd>copen<CR><C-w>p", opts("Open quickfix list"))
+kmap("n", "<leader>cc", "<cmd>cclose<CR>", opts("Close quickfix list"))
+kmap("n", "<leader>cn", "<cmd>cnext<CR>", opts("Next quickfix item"))
+kmap("n", "<leader>cp", "<cmd>cprev<CR>", opts("Previous quickfix item"))
 
 -- Resize windows with arrow keys
-kmap("n", "<A-Up>", ":resize +5<CR>", opts("Resize window up"))
-kmap("n", "<A-Down>", ":resize -5<CR>", opts("Resize window down"))
-kmap("n", "<A-Left>", ":vertical resize +5<CR>", opts("Resize window left"))
-kmap("n", "<A-Right>", ":vertical resize -5<CR>", opts("Resize window right"))
+kmap("n", "<A-Up>", "<cmd>resize +5<CR>", opts("Resize window up"))
+kmap("n", "<A-Down>", "<cmd>resize -5<CR>", opts("Resize window down"))
+kmap("n", "<A-Left>", "<cmd>vertical resize +5<CR>", opts("Resize window left"))
+kmap("n", "<A-Right>", "<cmd>vertical resize -5<CR>", opts("Resize window right"))
 
 -- Open/Close windows
 kmap("n", "<leader>v", "<C-w>v", opts("Open vertical split"))
@@ -68,8 +68,8 @@ kmap("v", "<", "<gv", opts("Shift left"))
 kmap("v", ">", ">gv", opts("Shift right"))
 
 -- Move selection up/down
-kmap("v", "J", ":m '>+1<CR>gv=gv", opts("Move selection down"))
-kmap("v", "K", ":m '<-2<CR>gv=gv", opts("Move selection up"))
+kmap("v", "J", "<cmd>m '>+1<CR>gv=gv", opts("Move selection down"))
+kmap("v", "K", "<cmd>m '<-2<CR>gv=gv", opts("Move selection up"))
 
 -- paste without copying selection
 kmap("v", "p", '"_dP', opts("Paste"))

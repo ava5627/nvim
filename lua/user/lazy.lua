@@ -61,10 +61,20 @@ lazy.setup({
         }
     },
     {
-        "mbbill/undotree",
+        "jiaoshijie/undotree",
+        dependencies = "nvim-lua/plenary.nvim",
+        opts = {
+            float_diff = false,
+            position = "right",
+        },
         keys = {
-            { "<leader>u", ":UndotreeToggle<CR>", desc = "Undo tree" }
-        }
+            {
+                "<leader>u",
+                function()
+                    require('undotree').toggle()
+                end
+            }
+        },
     },
     { "SmiteshP/nvim-navic",  opts = { highlight = true } },
     {
