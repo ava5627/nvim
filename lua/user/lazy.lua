@@ -158,6 +158,7 @@ lazy.setup({
     { "numToStr/Comment.nvim", config = true },
     {
         "folke/todo-comments.nvim",
+        lazy = false,
         config = true,
         keys = function()
             local todo = require("todo-comments")
