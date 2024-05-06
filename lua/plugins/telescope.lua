@@ -59,8 +59,8 @@ return {
                 { "<leader>og", telescope.live_grep,            desc = "Grep" },
                 { "<leader>os", telescope.lsp_document_symbols, desc = "Document symbols" },
                 { "<leader>oi", telescope.buffers,              desc = "Buffers" },
-                { "<leader>od", telescope.git_status,           desc = "Changed Files" },
-                { "<leader>oc", telescope.diagnostics,          desc = "Go to diagnostics" },
+                { "<leader>oc", telescope.git_status,           desc = "Changed Files" },
+                { "<leader>od", telescope.diagnostics,          desc = "Go to diagnostics" },
             }
         end,
     },

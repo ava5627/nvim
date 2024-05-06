@@ -16,6 +16,7 @@ kmap({ "n", "v", "o" }, "<BS>", "<Space>", opts("Secondary leader", { remap = tr
 kmap("n", "<leader>ww", "<cmd>w<CR>", opts("Save"))
 kmap("n", "<leader>wq", "<cmd>bdelete<CR>", opts("Save and close buffer"))
 kmap("n", "<A-q>", "<cmd>bdelete<CR>", opts("Close buffer"))
+kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
 
 -- navigation
 kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
