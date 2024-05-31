@@ -238,11 +238,14 @@ lazy.setup({
                 }
             }
         end,
-        keys = {
-            { "<leader>gd", "<cmd>DiffviewOpen<CR>",          desc = "open diff" },
-            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>",   desc = "open history" },
-            { "<leader>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "open file history" },
-        },
+        keys = function()
+            local diffview = require("diffview")
+            return {
+                { "<leader>gd", diffview.open,                                   desc = "open diff" },
+                { "<leader>gh", diffview.file_history,                           desc = "open history" },
+                { "<leader>gf", function() diffview.file_history(nil, { "%" }) end, desc = "open file history" },
+            }
+        end,
     },
     {
         "NeogitOrg/neogit",
@@ -251,11 +254,18 @@ lazy.setup({
             "sindrets/diffview.nvim",        -- optional - Diff integration
             "nvim-telescope/telescope.nvim", -- optional
         },
-        config = true,
+        opts = {
+            commit_editor = {
+                kind = "vsplit",
+            }
+        },
         lazy = false,
-        keys = {
-            { "<leader>gs", "<cmd>Neogit<CR>", desc = "Git status" },
-        }
+        keys = function()
+            local neogit = require("neogit")
+            return {
+                { "<leader>gs", neogit.open, desc = "Git status" },
+            }
+        end
     },
 }, {
     dev = {

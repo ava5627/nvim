@@ -39,3 +39,13 @@ autocmd("BufWritePre", {
         ]])
     end,
 })
+
+augroup("neogit", {})
+autocmd("FileType", {
+    group = "neogit",
+    pattern = { "NeogitStatus" },
+    callback = function()
+        kmap("n", ")", "}j", { silent = true, noremap = true, buffer = true })
+        kmap("n", "(", "{{j", { silent = true, noremap = true, buffer = true })
+    end
+})
