@@ -85,7 +85,6 @@ return {
                     callback = vim.lsp.buf.clear_references,
                 })
             end
-            require("lsp-inlayhints").on_attach(client, bufnr)
             require("nvim-navic").attach(client, bufnr)
         end,
         settings = {
@@ -177,6 +176,7 @@ return {
             },
             dap = {}
         }
+        vim.lsp.inlay_hint.enable(true)
     end,
     dependencies = {
         {
@@ -199,7 +199,6 @@ return {
             }
         },
         { 'j-hui/fidget.nvim',            config = true },
-        { "lvimuser/lsp-inlayhints.nvim", config = true },
         { 'mrcjkb/rustaceanvim',          ft = 'rust' },
     }
 }
