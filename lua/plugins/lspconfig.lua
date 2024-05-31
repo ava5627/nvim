@@ -181,14 +181,7 @@ return {
     dependencies = {
         {
             "folke/neodev.nvim",
-            opts = {
-                override = function(root, library)
-                    if root:find("nvim") then
-                        library.enabled = true
-                        library.plugins = true
-                    end
-                end
-            }
+            config = true,
         },
         {
             "williamboman/mason.nvim",
