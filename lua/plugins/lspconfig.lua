@@ -16,7 +16,7 @@ return {
             { "<C-g><C-k>", vim.lsp.buf.signature_help,     desc = "Signature help" },
             { "<A-f>",      vim.lsp.buf.format,             desc = "Format" },
             {
-                "gv",
+                "<leader>tv",
                 function()
                     local vt = vim.diagnostic.config()["virtual_text"]
                     vim.diagnostic.config({ virtual_text = not vt })

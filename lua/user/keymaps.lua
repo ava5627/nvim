@@ -17,6 +17,7 @@ kmap("n", "<leader>ww", "<cmd>w<CR>", opts("Save"))
 kmap("n", "<leader>wq", "<cmd>bdelete<CR>", opts("Save and close buffer"))
 kmap("n", "<A-q>", "<cmd>bdelete<CR>", opts("Close buffer"))
 kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
+kmap("n", "<leader>fq", "<cmd>q!<CR>", opts("force close buffer"))
 
 -- navigation
 kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
