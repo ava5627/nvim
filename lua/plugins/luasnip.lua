@@ -21,6 +21,8 @@ return {
                 function()
                     if lua_snip.locally_jumpable(1) then
                         lua_snip.jump(1)
+                    else
+                        lua_snip.expand()
                     end
                 end,
                 desc = "Next snippet",

@@ -69,7 +69,7 @@ return {
             "pylsp",
             "bashls",
             "texlab",
-            -- "ltex",
+            "ltex",
             "gopls",
             "tsserver",
             "nil_ls"

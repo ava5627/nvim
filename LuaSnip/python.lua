@@ -42,7 +42,12 @@ return {
         })
     ),
     s(
-        { trig = [[(.*[^f])("[^"]*{.)]], trigEngine = "pattern", snippetType = "autosnippet" },
+        {
+            trig = [[([^f])("[^"]*{.)]],
+            wordTrig = false,
+            trigEngine = "pattern",
+            snippetType = "autosnippet"
+        },
         fmta([[<>f<>]], { cp(1), cp(2) })
     ),
     s({ trig = "ehome", dscr = "Expand Home" }, { t("os.path.expanduser(\"~\")") }),
