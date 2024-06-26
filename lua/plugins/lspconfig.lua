@@ -16,7 +16,7 @@ return {
             { "<C-g><C-k>", vim.lsp.buf.signature_help,     desc = "Signature help" },
             { "<A-f>",      vim.lsp.buf.format,             desc = "Format" },
             {
-                "<leader>tv",
+                "<leader>gv",
                 function()
                     local vt = vim.diagnostic.config()["virtual_text"]
                     vim.diagnostic.config({ virtual_text = not vt })
@@ -85,7 +85,14 @@ return {
                     callback = vim.lsp.buf.clear_references,
                 })
             end
-            require("nvim-navic").attach(client, bufnr)
+            if client.server_capabilities.documentSymbolProvider then
+                require("nvim-navic").attach(client, bufnr)
+            end
+            if client.name == "ltex" then
+                require("ltex_extra").setup({
+                    path = vim.fn.stdpath("data") .. "/ltex",
+                })
+            end
         end,
         settings = {
             pylsp = {
@@ -198,7 +205,8 @@ return {
                 hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
             }
         },
-        { 'j-hui/fidget.nvim',            config = true },
-        { 'mrcjkb/rustaceanvim',          ft = 'rust' },
+        { "j-hui/fidget.nvim",                 config = true },
+        { "mrcjkb/rustaceanvim",               ft = "rust" },
+        { "barreiroleo/ltex_extra.nvim" }
     }
 }
