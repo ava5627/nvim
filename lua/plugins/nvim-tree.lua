@@ -44,7 +44,8 @@ return {
         update_focused_file = {
             enable = true,
             exclude = function(event)
-                return vim.api.nvim_buf_get_option(event.buf, "filetype") == "gitcommit" or vim.fn.expand("%"):match("site%-packages")
+                return vim.api.nvim_get_option_value("filetype", { buf = event.buf }) == "gitcommit" or
+                vim.fn.expand("%"):match("site%-packages")
             end,
         },
         diagnostics = {
