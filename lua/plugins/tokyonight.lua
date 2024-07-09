@@ -11,9 +11,8 @@ return {
         on_highlights = function(highlights, colors)
             highlights.DiagnosticUnnecessary = { undercurl = true, sp = colors.warning }
         end,
-        plugins = {
-            ["nvim-tree"] = true
-        }
+        transparent = true,
+        terminal_colors = false,
     },
     config = function(_, opts)
         require("tokyonight").setup(opts)
