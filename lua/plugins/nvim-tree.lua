@@ -17,7 +17,7 @@ local function on_attach(bufnr)
 end
 
 return {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     opts = {
         hijack_cursor = true,
         sync_root_with_cwd = true,
@@ -45,7 +45,7 @@ return {
             enable = true,
             exclude = function(event)
                 return vim.api.nvim_get_option_value("filetype", { buf = event.buf }) == "gitcommit" or
-                vim.fn.expand("%"):match("site%-packages")
+                    vim.fn.expand("%"):match("site%-packages")
             end,
         },
         diagnostics = {

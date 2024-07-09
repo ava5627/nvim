@@ -6,16 +6,17 @@ return {
         style = "night",
         on_colors = function(colors)
             colors.git.add = colors.hint
-            colors.gitSigns.add = colors.hint
             colors.git.change = colors.blue
-            colors.gitSigns.change = colors.blue
         end,
         on_highlights = function(highlights, colors)
             highlights.DiagnosticUnnecessary = { undercurl = true, sp = colors.warning }
-        end
+        end,
+        plugins = {
+            ["nvim-tree"] = true
+        }
     },
     config = function(_, opts)
         require("tokyonight").setup(opts)
-        vim.cmd("colorscheme tokyonight")
+        vim.cmd.colorscheme("tokyonight")
     end,
 }

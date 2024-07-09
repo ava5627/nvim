@@ -30,7 +30,8 @@ lazy.setup({
     { import = "plugins" },
     {
         "zbirenbaum/copilot.lua",
-        cond = vim.fn.has("mac") == 0,
+        -- cond = vim.fn.has("mac") == 0,
+        cond = false,
         cmd = "Copilot",
         event = "InsertEnter",
         opts = {
@@ -69,12 +70,7 @@ lazy.setup({
             position = "right",
         },
         keys = {
-            {
-                "<leader>u",
-                function()
-                    require('undotree').toggle()
-                end
-            }
+            { "<leader>u", function() require('undotree').toggle() end, desc = "Toggle undotree" }
         },
     },
     { "SmiteshP/nvim-navic",  opts = { highlight = true } },
@@ -184,11 +180,13 @@ lazy.setup({
                 end
             }
         },
-        keys = {
-            { "<F1>", function() require("acr").ACRLast() end, desc = "Run Last" },
-            { "<F2>", function() require("acr").ACR() end,     desc = "Run Choose" },
-            { "<F3>", function() require("acr").ACRAuto() end, desc = "Run default" },
-        },
+        keys = function()
+            return {
+                { "<F1>", require("acr").ACRLast, desc = "Run Last" },
+                { "<F2>", require("acr").ACR,     desc = "Run Choose" },
+                { "<F3>", require("acr").ACRAuto, desc = "Run default" },
+            }
+        end,
         dependencies = {
             "akinsho/toggleterm.nvim",
         }
@@ -242,8 +240,8 @@ lazy.setup({
         keys = function()
             local diffview = require("diffview")
             return {
-                { "<leader>gd", diffview.open,                                   desc = "open diff" },
-                { "<leader>gh", diffview.file_history,                           desc = "open history" },
+                { "<leader>gd", diffview.open,                                      desc = "open diff" },
+                { "<leader>gh", diffview.file_history,                              desc = "open history" },
                 { "<leader>gf", function() diffview.file_history(nil, { "%" }) end, desc = "open file history" },
             }
         end,
