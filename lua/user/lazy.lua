@@ -168,7 +168,6 @@ lazy.setup({
     },
     {
         "ava5627/ACR.nvim",
-        dir = "~/repos/ACR",
         dev = vim.loop.fs_stat(home .. "/repos/ACR") ~= nil,
         main = "acr",
         opts = {
