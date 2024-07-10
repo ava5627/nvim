@@ -1,4 +1,3 @@
-local home = vim.fn.expand("~")
 -- Automatically install lazy.nvim if not found
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -168,7 +167,7 @@ lazy.setup({
     },
     {
         "ava5627/ACR.nvim",
-        dev = vim.loop.fs_stat(home .. "/repos/ACR") ~= nil,
+        dev = true,
         main = "acr",
         opts = {
             term_opts = {
@@ -267,6 +266,7 @@ lazy.setup({
     },
 }, {
     dev = {
-        path = "~/repos"
+        path = "~/repos",
+        fallback = true
     }
 })
