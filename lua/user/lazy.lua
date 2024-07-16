@@ -264,6 +264,15 @@ lazy.setup({
             }
         end
     },
+    {
+        "FabijanZulj/blame.nvim",
+        lazy = false,
+        config = true,
+        keys = {
+            { "<leader>gb", "<cmd>BlameToggle<CR>", desc = "Git Blame" },
+            { "<leader>gB", "<cmd>BlameToggle virtual<CR>", desc = "Git Blame Virtual Text" }
+        }
+    }
 }, {
     dev = {
         path = "~/repos",
