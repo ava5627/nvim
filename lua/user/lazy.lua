@@ -29,8 +29,7 @@ lazy.setup({
     { import = "plugins" },
     {
         "zbirenbaum/copilot.lua",
-        -- cond = vim.fn.has("mac") == 0,
-        cond = false,
+        cond = vim.fn.has("mac") == 0,
         cmd = "Copilot",
         event = "InsertEnter",
         opts = {

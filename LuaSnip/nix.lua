@@ -46,7 +46,18 @@ return {
         ]],
         { i(0) }
     )),
-    s({ trig = "epgs", snippetType = "autosnippet", dscr = "Environment Packages" }, fmta(
+    s({ trig = "shell", dscr = "Shell Template" }, fmta(
+        [[
+            {pkgs ? import <nixpkgs> {}}:
+            pkgs.mkShell {
+              buildInputs = with pkgs; [
+                <>
+              ];
+            }
+        ]],
+        { i(0) }
+    )),
+    s({ trig = "envpkgs", dscr = "Environment Packages" }, fmta(
         [[
             environment.systemPackages = with pkgs; [
               <>
