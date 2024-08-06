@@ -192,7 +192,6 @@ return {
                     "jsonls",
                     "lua_ls",
                     "pylsp",
-                    "nil_ls",
                     "bashls",
                 }
             }
