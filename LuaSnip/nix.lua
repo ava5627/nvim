@@ -48,7 +48,7 @@ return {
     )),
     s({ trig = "shell", dscr = "Shell Template" }, fmta(
         [[
-            {pkgs ? import <nixpkgs> {}}:
+            {pkgs ? import <<nixpkgs>> {}}:
             pkgs.mkShell {
               buildInputs = with pkgs; [
                 <>
