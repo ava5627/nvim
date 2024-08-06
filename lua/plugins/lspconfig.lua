@@ -63,17 +63,6 @@ return {
                 prefix = "",
             },
         },
-        servers = {
-            "jsonls",
-            "lua_ls",
-            "pylsp",
-            "bashls",
-            "texlab",
-            "ltex",
-            "gopls",
-            "tsserver",
-            "nil_ls"
-        },
         on_attach = function(client, bufnr)
             if client.server_capabilities.documentHighlightProvider then
                 vim.api.nvim_create_autocmd("CursorHold", {
@@ -165,13 +154,15 @@ return {
             vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
         end
         local lspconfig = require("lspconfig")
+        local mason_lspconfig = require("mason-lspconfig")
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         local server_opts = {
             on_attach = opts.on_attach,
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
             settings = opts.settings,
         }
-        for _, server in pairs(opts.servers) do
+        local installed = mason_lspconfig.get_installed_servers()
+        for _, server in pairs(installed) do
             lspconfig[server].setup(server_opts)
         end
         vim.g.rustaceanvim = {
@@ -194,7 +185,18 @@ return {
             "williamboman/mason.nvim",
             opts = { ui = { border = "rounded" } }
         },
-        { "williamboman/mason-lspconfig.nvim", config = true },
+        {
+            "williamboman/mason-lspconfig.nvim",
+            opts = {
+                ensure_installed = {
+                    "jsonls",
+                    "lua_ls",
+                    "pylsp",
+                    "nil_ls",
+                    "bashls",
+                }
+            }
+        },
         {
             "ray-x/lsp_signature.nvim",
             opts = {
