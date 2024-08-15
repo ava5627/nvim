@@ -61,9 +61,6 @@ kmap("i", "<A-j>", "<down>", opts("Move cursor down"))
 kmap("i", "<A-k>", "<up>", opts("Move cursor up"))
 kmap("i", "<A-l>", "<right>", opts("Move cursor right"))
 
--- Delete
-kmap("i", "<A-d>", "<C-o>dw", opts("Delete word"))
-
 -- Paste in insert mode
 kmap("i", "<C-p>", "<left><C-o>p", opts("Paste"))
 
