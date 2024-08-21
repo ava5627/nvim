@@ -75,3 +75,8 @@ kmap("v", "K", "<cmd>m '<-2<CR>gv=gv", opts("Move selection up"))
 
 -- paste without copying selection
 kmap("v", "p", '"_dP', opts("Paste"))
+
+-- select all
+kmap("n", "<leader>av", "ggVG", opts("Select all"))
+kmap("n", "<leader>ad", "ggVGd", opts("Delete all"))
+kmap("n", "<leader>ay", "myggVGy`y", opts("Yank all"))
