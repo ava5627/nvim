@@ -54,8 +54,8 @@ return {
                 ["<C-e>"] = cmp.mapping.abort(),
                 -- Accept currently selected item. If none selected, `select` first item.
                 -- Set `select` to `false` to only confirm explicitly selected items.
-                ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
                 ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+                ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Insert }),
             },
             formatting = {
                 fields = { "kind", "abbr", "menu" },
@@ -111,12 +111,14 @@ return {
         local cmp = require("cmp")
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         cmp.setup(opts)
-        cmp.setup.cmdline("/", {
+        cmp.setup.cmdline({ "/", "?" }, {
             completion = { autocomplete = false },
-            sources = { { name = "buffer", option = { keyword_pattern = [=[[^[:blank:]].*]=] } } },
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = { { name = "buffer" } },
         })
         cmp.setup.cmdline(":", {
             completion = { autocomplete = false },
+            mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({ { name = "path" }, }, { { name = "cmdline" } }),
         })
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })

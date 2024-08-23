@@ -14,8 +14,7 @@ return {
         transparent = true,
         terminal_colors = false,
     },
-    config = function(_, opts)
-        require("tokyonight").setup(opts)
+    init = function()
         vim.cmd.colorscheme("tokyonight")
     end,
 }

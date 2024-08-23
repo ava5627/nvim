@@ -73,18 +73,12 @@ return {
         keys = function()
             local telescope_harpoon = require("telescope").extensions.harpoon.marks
             return {
-                {
-                    "<leader>h",
-                    function()
-                        telescope_harpoon(picker_theme)
-                    end,
-                    desc = "Harpoon marks"
-                },
-                { "<leader>mm", require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
-                { "<A-1>",      function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
-                { "<A-2>",      function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
-                { "<A-3>",      function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
-                { "<A-4>",      function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
+                { "<leader>oh", function() telescope_harpoon(picker_theme) end, desc = "Harpoon marks" },
+                { "<leader>m", require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
+                { "<A-z>",     function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
+                { "<A-x>",     function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
+                { "<A-c>",     function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
+                { "<A-v>",     function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
             }
         end
     },

@@ -140,12 +140,8 @@ lazy.setup({
     },
     {
         "lervag/vimtex",
-        config = function()
+        init = function()
             vim.g.vimtex_view_method = "zathura"
-            vim.api.nvim_create_autocmd({ "User" }, {
-                pattern = "VimtexEventQuit",
-                command = "VimtexClean"
-            })
         end,
         ft = "tex",
     },

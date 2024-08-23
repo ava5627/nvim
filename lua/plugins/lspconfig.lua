@@ -162,6 +162,15 @@ return {
             settings = opts.settings,
         }
         local installed = mason_lspconfig.get_installed_servers()
+        -- if pylsp is installed os wide, add it to the installed
+        -- on nixos, pylsp is installed by the system configuration
+        if vim.fn.has("linux") and installed["pylsp"] then
+            vim.notify("pylsp should be installed system wide", vim.log.levels.WARN)
+        end
+        if vim.fn.executable("pylsp") then
+            table.insert(installed, "pylsp")
+        end
+
         for _, server in pairs(installed) do
             lspconfig[server].setup(server_opts)
         end
@@ -191,7 +200,6 @@ return {
                 ensure_installed = {
                     "jsonls",
                     "lua_ls",
-                    "pylsp",
                     "bashls",
                 }
             }
@@ -206,8 +214,8 @@ return {
                 hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
             }
         },
-        { "j-hui/fidget.nvim",                 config = true },
-        { "mrcjkb/rustaceanvim",               ft = "rust" },
+        { "j-hui/fidget.nvim",          config = true },
+        { "mrcjkb/rustaceanvim",        ft = "rust" },
         { "barreiroleo/ltex_extra.nvim" }
     }
 }
