@@ -67,7 +67,7 @@ return {
     {
         "ThePrimeagen/harpoon",
         dependencies = "nvim-telescope/telescope.nvim",
-        config = function()
+        init = function()
             require("telescope").load_extension("harpoon")
         end,
         keys = function()

@@ -1,7 +1,7 @@
 return {
     {
         "mfussenegger/nvim-dap",
-        config = function()
+        init = function()
             local sd = vim.fn.sign_define
             sd("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
             sd("DapBreakpointCondition", { text = "", texthl = "DiagnosticSignWarn", linehl = "", numhl = "" })
@@ -48,15 +48,14 @@ return {
                 },
             },
         },
-        config = function(_, opts)
+        init = function()
             local dapui = require("dapui")
-            local dap = require("dap")
-            dapui.setup(opts)
-            dap.listeners.after.event_initialized["dapui_config"] = function()
+            local dap = require("dap").listeners.after
+            dap.event_initialized["dapui_config"] = function()
                 dapui.open()
                 require("nvim-tree.api").tree.close()
             end
-            dap.listeners.after.event_terminated["dapui_config"] = function()
+            dap.event_terminated["dapui_config"] = function()
                 dapui.close()
                 require("nvim-tree.api").tree.toggle({ focus = false })
             end
@@ -71,16 +70,6 @@ return {
         dependencies = {
             "nvim-neotest/nvim-nio",
         }
-    },
-    {
-        "ravenxrz/DAPInstall.nvim",
-        enabled = false,
-        config = function()
-            local dap_install = require("dap-install")
-            dap_install.setup {}
-            dap_install.config("python", {})
-            -- dap_install.config("ccppr_vsc", {})
-        end
     },
     { "theHamsta/nvim-dap-virtual-text", config = true },
 }

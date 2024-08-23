@@ -162,17 +162,14 @@ return {
             settings = opts.settings,
         }
         local installed = mason_lspconfig.get_installed_servers()
-        -- if pylsp is installed os wide, add it to the installed
-        -- on nixos, pylsp is installed by the system configuration
-        if vim.fn.has("linux") and installed["pylsp"] then
-            vim.notify("pylsp should be installed system wide", vim.log.levels.WARN)
-        end
         if vim.fn.executable("pylsp") then
             table.insert(installed, "pylsp")
         end
 
         for _, server in pairs(installed) do
-            lspconfig[server].setup(server_opts)
+            if server ~= "rust_analyzer" then
+                lspconfig[server].setup(server_opts)
+            end
         end
         vim.g.rustaceanvim = {
             server = {
