@@ -21,14 +21,21 @@ return {
     end,
     lazy = false,
     keys = function()
-        local python = require("toggleterm.terminal").Terminal:new({ cmd = "ipython3", hidden = true, direction = "float" })
+        local python = require("toggleterm.terminal").Terminal:new({
+            cmd = "ipython3",
+            hidden = true,
+            direction = "float",
+            on_open = function(term)
+                vim.keymap.set({"n", "t"}, "<C-esc>", function() term:close() end, { silent = true, noremap = true, buffer = term.bufnr })
+            end
+        })
         return {
-            { "<C-t>p", function() python:toggle() end, desc = "Toggle ipython terminal", mode = { "n", "t" } },
-            { "<esc>",  [[<C-\><C-n>]],                 desc = "Normal mode",             mode = "t" },
-            { "<C-h>",  [[<C-\><C-n><C-W>h]],           desc = "Move left",               mode = "t" },
-            { "<C-j>",  [[<C-\><C-n><C-W>j]],           desc = "Move down",               mode = "t" },
-            { "<C-k>",  [[<C-\><C-n><C-W>k]],           desc = "Move up",                 mode = "t" },
-            { "<C-l>",  [[<C-\><C-n><C-W>l]],           desc = "Move right",              mode = "t" },
+            { "<C-t>", function() python:toggle() end, desc = "Toggle ipython terminal", mode = { "n", "t" } },
+            { "<esc>", [[<C-\><C-n>]],                 desc = "Normal mode",             mode = "t" },
+            { "<C-h>", [[<C-\><C-n><C-W>h]],           desc = "Move left",               mode = "t" },
+            { "<C-j>", [[<C-\><C-n><C-W>j]],           desc = "Move down",               mode = "t" },
+            { "<C-k>", [[<C-\><C-n><C-W>k]],           desc = "Move up",                 mode = "t" },
+            { "<C-l>", [[<C-\><C-n><C-W>l]],           desc = "Move right",              mode = "t" },
             "<C-esc>"
         }
     end
