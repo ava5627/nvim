@@ -213,8 +213,8 @@ lazy.setup({
                 { "<A-e>",         m('e'),        desc = "Spider e",            mode = { "n", "o", "x" } },
                 { "<A-w>",         m('w'),        desc = "Spider w",            mode = { "n", "o", "x" } },
                 { "<A-b>",         m('b'),        desc = "Spider b",            mode = { "n", "o", "x" } },
-                { "<A-w>",         "<C-o>d<A-b>", desc = "Delete partial word", mode = "i",              remap = true },
-                { "<A-backspace>", "<C-o>d<A-b>", desc = "Delete partial word", mode = "i",              remap = true },
+                { "<A-w>",         "<C-o>dv<A-b>", desc = "Delete partial word", mode = "i",              remap = true },
+                { "<A-backspace>", "<C-o>dv<A-b>", desc = "Delete partial word", mode = "i",              remap = true },
                 { "<A-d>",         "<C-o>d<A-e>", desc = "Delete partial word", mode = "i",              remap = true },
                 { "<A-delete>",    "<C-o>d<A-e>", desc = "Delete partial word", mode = "i",              remap = true },
             }
