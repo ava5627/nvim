@@ -55,7 +55,7 @@ return {
                 -- Accept currently selected item. If none selected, `select` first item.
                 -- Set `select` to `false` to only confirm explicitly selected items.
                 ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-                ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Insert }),
+                ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
             },
             formatting = {
                 fields = { "kind", "abbr", "menu" },
