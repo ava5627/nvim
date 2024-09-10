@@ -14,6 +14,7 @@ local picker_theme = {
     }
 }
 
+---@type LazyPluginSpec[]
 return {
     {
         "nvim-telescope/telescope.nvim",

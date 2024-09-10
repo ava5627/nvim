@@ -12,6 +12,7 @@ local navic_location = {
     end,
 }
 
+---@type LazyPluginSpec
 return {
     "nvim-lualine/lualine.nvim",
     opts = {

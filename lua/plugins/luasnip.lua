@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",
@@ -8,14 +9,16 @@ return {
         return {
             {
                 "<C-i>",
-                function ()
+                function()
                     if lua_snip.choice_active() then
                         lua_snip.change_choice(1)
                     else
                         lua_snip.expand()
                     end
                 end,
-                desc = "Expand snippet or change choice", mode = { "i", "s" } },
+                desc = "Expand snippet or change choice",
+                mode = { "i", "s" }
+            },
             {
                 "<C-l>",
                 function()
@@ -39,8 +42,9 @@ return {
                 mode = { "i", "s" }
             },
             {
-                "<leader>ls",
-                function() require("luasnip.loaders.from_lua").load({ paths = { snip_path } }) end
+                "<leader>l",
+                function() require("luasnip.loaders.from_lua").load({ paths = { snip_path } }) end,
+                desc = "Reload snippets",
             },
         }
     end,

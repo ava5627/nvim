@@ -28,6 +28,7 @@ local kind_icons = {
     TypeParameter = "󰊄 ",
 }
 
+---@type LazyPluginSpec
 return {
     "hrsh7th/nvim-cmp",
     opts = function()

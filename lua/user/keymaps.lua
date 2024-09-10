@@ -18,10 +18,12 @@ kmap("n", "<leader>wq", "<cmd>bdelete<CR>", opts("Save and close buffer"))
 kmap("n", "<leader>wa", "<cmd>noa w<CR>", opts("Save without autocommands"))
 kmap("n", "<A-q>", "<cmd>bdelete<CR>", opts("Close buffer"))
 kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
-kmap("n", "<leader>fq", "<cmd>q!<CR>", opts("force close buffer"))
+kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 
 -- navigation
-kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
+-- kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
+kmap("n", "}", "0w%j0w", opts("Move to next paragraph"))
+kmap("n", "{", "k0w%0w", opts("Move to previous paragraph"))
 
 -- Clear search highlights
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
@@ -52,9 +54,9 @@ kmap("n", "<A-Down>", "<cmd>resize -5<CR>", opts("Resize window down"))
 kmap("n", "<A-Left>", "<cmd>vertical resize +5<CR>", opts("Resize window left"))
 kmap("n", "<A-Right>", "<cmd>vertical resize -5<CR>", opts("Resize window right"))
 
--- Open/Close windows
-kmap("n", "<leader>v", "<C-w>v", opts("Open vertical split"))
-kmap("n", "<leader>s", "<C-w>s", opts("Open horizontal split"))
+-- Open windows
+kmap("n", "<leader>v", "<C-w>v", opts("Open vertical window"))
+kmap("n", "<leader>s", "<C-w>s", opts("Open horizontal window"))
 
 -- Insert Mode
 kmap("i", "<A-h>", "<left>", opts("Move cursor left"))

@@ -16,6 +16,7 @@ local function on_attach(bufnr)
     vim.keymap.set("n", "[d", nt_api.node.navigate.diagnostics.prev, opts("Previous Diagnostic"))
 end
 
+---@type LazyPluginSpec
 return {
     "nvim-tree/nvim-tree.lua",
     opts = {
