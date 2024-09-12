@@ -202,7 +202,7 @@ lazy.setup({
         }
     },
     "JoosepAlviste/nvim-ts-context-commentstring",
-    "treesitter/nvim-treesitter-refactor",
+    "nvim-treesitter/nvim-treesitter-refactor",
     { "Darazaki/indent-o-matic", config = true, },
     {
         "chrisgrieser/nvim-spider",

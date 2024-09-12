@@ -163,7 +163,7 @@ return {
             settings = opts.settings,
         }
         local installed = mason_lspconfig.get_installed_servers()
-        if vim.fn.executable("pylsp") then
+        if vim.fn.executable("pylsp") and not vim.tbl_contains(installed, "pylsp") then
             table.insert(installed, "pylsp")
         end
 
