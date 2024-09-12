@@ -24,13 +24,13 @@ return {
                 { pattern = "close", icon = "󰈆 " },
                 { pattern = "todo", cat = "file", name = "TODO" },
                 { pattern = "buffer", icon = " ", color = "blue" },
+                { pattern = "text-case", icon = " " },
             },
         },
         spec = {
             {
-                { "gm", group = "text-case", icon = " " },
                 { "<leader>g", group = "code" },
-                { "<leader>a", group = "select", icon = " ", color = "cyan" },
+                { "<leader>a", group = "select", icon = " " },
                 { "<leader>d", group = "dap" },
                 { "<leader>w", group = "window" },
                 { "<leader>o", group = "telescope" },
