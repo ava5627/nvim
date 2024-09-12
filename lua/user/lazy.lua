@@ -44,6 +44,11 @@ lazy.setup({
                     dismiss = "<C-]>",
                 },
             },
+            panel = {
+                keymap = {
+                    open = "<A-`>",
+                }
+            },
             filetypes = {
                 ["*"] = true,
             },

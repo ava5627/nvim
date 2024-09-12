@@ -33,6 +33,7 @@ kmap("n", "<a-i>", "moO<esc>`o", opts("Insert line above"))
 kmap("n", "<a-o>", "moo<esc>`o", opts("Insert line below"))
 kmap("n", "<a-I>", "moO<esc>", opts("Insert line above and move cursor"))
 kmap("n", "<a-O>", "moo<esc>", opts("Insert line below and move cursor"))
+kmap("i", "<a-CR>", "<CR>", opts("Insert newline without leaving insert mode"))
 
 -- Better window navigation
 kmap("n", "<C-h>", "<C-w>h", opts("Window left"))
