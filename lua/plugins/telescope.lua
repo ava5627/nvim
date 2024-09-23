@@ -62,6 +62,10 @@ return {
                 { "<leader>oi", telescope.buffers,              desc = "Buffers" },
                 { "<leader>oc", telescope.git_status,           desc = "Changed Files" },
                 { "<leader>od", telescope.diagnostics,          desc = "Go to diagnostics" },
+                { "gd",         telescope.lsp_definitions,      desc = "Go to lsp definition" },
+                { "gi",         telescope.lsp_implementations,  desc = "Go to lsp implementation" },
+                { "grf",        telescope.lsp_references,       desc = "Go to lsp references" },
+                { "gt",         telescope.lsp_type_definitions, desc = "Go to lsp type definition" },
             }
         end,
     },
@@ -70,16 +74,30 @@ return {
         dependencies = "nvim-telescope/telescope.nvim",
         init = function()
             require("telescope").load_extension("harpoon")
+            local harpoon = require("harpoon.mark")
+            if harpoon.get_length() == 0 then
+                if vim.loop.fs_stat("src/main.rs") then
+                    harpoon.add_file("src/main.rs")
+                elseif vim.loop.fs_stat("main.py") then
+                    harpoon.add_file("main.py")
+                elseif vim.loop.fs_stat("src/main.py") then
+                    harpoon.add_file("src/main.py")
+                elseif vim.loop.fs_stat("init.lua") then
+                    harpoon.add_file("init.lua")
+                elseif vim.loop.fs_stat("init.vim") then
+                    harpoon.add_file("init.vim")
+                end
+            end
         end,
         keys = function()
             local telescope_harpoon = require("telescope").extensions.harpoon.marks
             return {
-                { "<leader>oh", function() telescope_harpoon(picker_theme) end, desc = "Harpoon marks" },
-                { "<leader>m", require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
-                { "<A-z>",     function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
-                { "<A-x>",     function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
-                { "<A-c>",     function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
-                { "<A-v>",     function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
+                { "<leader>oh", function() telescope_harpoon(picker_theme) end,   desc = "Harpoon marks" },
+                { "<leader>m",  require("harpoon.mark").add_file,                 desc = "Add file to harpoon" },
+                { "<A-z>",      function() require("harpoon.ui").nav_file(1) end, desc = "Open harpoon 1" },
+                { "<A-x>",      function() require("harpoon.ui").nav_file(2) end, desc = "Open harpoon 2" },
+                { "<A-c>",      function() require("harpoon.ui").nav_file(3) end, desc = "Open harpoon 3" },
+                { "<A-v>",      function() require("harpoon.ui").nav_file(4) end, desc = "Open harpoon 4" },
             }
         end
     },

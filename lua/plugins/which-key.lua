@@ -20,6 +20,7 @@ return {
                 { plugin = "ACR.nvim", icon = " ", color = "blue" },
                 { plugin = "LuaSnip", icon = " ", color = "cyan" },
                 { plugin = "bufdelete.nvim", icon = "󰈆 " },
+                { pattern = "lsp", icon = " ", color = "orange" },
                 { pattern = "save", icon = " ", color = "azure" },
                 { pattern = "close", icon = "󰈆 " },
                 { pattern = "todo", cat = "file", name = "TODO" },

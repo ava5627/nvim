@@ -22,8 +22,8 @@ kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 
 -- navigation
 -- kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
-kmap("n", "}", "0w%j0w", opts("Move to next paragraph"))
-kmap("n", "{", "k0w%0w", opts("Move to previous paragraph"))
+kmap("n", "}", "<cmd>silent! normal! ^%j^<cr>", opts("Move to next paragraph", { silent = true }))
+kmap("n", "{", "k^%^", opts("Move to previous paragraph"))
 
 -- Clear search highlights
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))

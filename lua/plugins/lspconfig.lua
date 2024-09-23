@@ -1,46 +1,60 @@
+local function on_attach(client, bufnr)
+    if client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_create_autocmd("CursorHold", {
+            pattern = "<buffer>",
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            pattern = "<buffer>",
+            callback = vim.lsp.buf.clear_references,
+        })
+    end
+    if client.server_capabilities.documentSymbolProvider then
+        require("nvim-navic").attach(client, bufnr)
+    end
+    if client.name == "ltex" then
+        require("ltex_extra").setup({
+            path = vim.fn.stdpath("data") .. "/ltex",
+        })
+    end
+end
+
 ---@type LazyPluginSpec
 return {
     "neovim/nvim-lspconfig",
     lazy = false,
-    keys = function()
-        local telescope = require("telescope.builtin")
-        return {
-            { "gd",         telescope.lsp_definitions,      desc = "Go to definition" },
-            { "gi",         telescope.lsp_implementations,  desc = "Go to implementation" },
-            { "grf",        telescope.lsp_references,       desc = "Go to references" },
-            { "gt",         telescope.lsp_type_definitions, desc = "Go to type definition" },
-            { "gD",         vim.lsp.buf.declaration,        desc = "Go to declaration" },
-            { "gs",         vim.lsp.buf.signature_help,     desc = "Signature help" },
-            { "gh",         vim.lsp.buf.hover,              desc = "Hover" },
-            { "grn",        vim.lsp.buf.rename,             desc = "Rename" },
-            { "ga",         vim.lsp.buf.code_action,        desc = "Code Action" },
-            { "<C-g><C-k>", vim.lsp.buf.signature_help,     desc = "Signature help" },
-            { "<A-f>",      vim.lsp.buf.format,             desc = "Format" },
-            {
-                "<leader>gv",
-                function()
-                    local vt = vim.diagnostic.config()["virtual_text"]
-                    vim.diagnostic.config({ virtual_text = not vt })
-                end,
-                desc = "Toggle virtual text"
-            },
-            {
-                "[d",
-                function() vim.diagnostic.goto_prev({ border = "rounded" }) end,
-                desc = "Go to previous diagnostic"
-            },
-            {
-                "gl",
-                function() vim.diagnostic.open_float({ border = "rounded" }) end,
-                desc = "Open diagnostic window"
-            },
-            {
-                "]d",
-                function() vim.diagnostic.goto_next({ border = "rounded" }) end,
-                desc = "Go to next diagnostic"
-            },
-        }
-    end,
+    keys = {
+        { "gD",         vim.lsp.buf.declaration,    desc = "Go to declaration" },
+        { "gs",         vim.lsp.buf.signature_help, desc = "Signature help" },
+        { "gh",         vim.lsp.buf.hover,          desc = "Hover" },
+        { "grn",        vim.lsp.buf.rename,         desc = "Rename" },
+        { "ga",         vim.lsp.buf.code_action,    desc = "Code Action" },
+        { "<C-g><C-k>", vim.lsp.buf.signature_help, desc = "Signature help" },
+        { "<A-f>",      vim.lsp.buf.format,         desc = "Format" },
+        {
+            "<leader>gv",
+            function()
+                local vt = vim.diagnostic.config()["virtual_text"]
+                vim.diagnostic.config({ virtual_text = not vt })
+            end,
+            desc = "Toggle virtual text"
+        },
+        {
+            "[d",
+            function() vim.diagnostic.goto_prev({ border = "rounded" }) end,
+            desc = "Go to previous diagnostic"
+        },
+        {
+            "gl",
+            function() vim.diagnostic.open_float({ border = "rounded" }) end,
+            desc = "Open diagnostic window"
+        },
+        {
+            "]d",
+            function() vim.diagnostic.goto_next({ border = "rounded" }) end,
+            desc = "Go to next diagnostic"
+        },
+    },
     opts = {
         diagnostics = {
             virtual_text = false,
@@ -64,26 +78,6 @@ return {
                 prefix = "",
             },
         },
-        on_attach = function(client, bufnr)
-            if client.server_capabilities.documentHighlightProvider then
-                vim.api.nvim_create_autocmd("CursorHold", {
-                    pattern = "<buffer>",
-                    callback = vim.lsp.buf.document_highlight,
-                })
-                vim.api.nvim_create_autocmd("CursorMoved", {
-                    pattern = "<buffer>",
-                    callback = vim.lsp.buf.clear_references,
-                })
-            end
-            if client.server_capabilities.documentSymbolProvider then
-                require("nvim-navic").attach(client, bufnr)
-            end
-            if client.name == "ltex" then
-                require("ltex_extra").setup({
-                    path = vim.fn.stdpath("data") .. "/ltex",
-                })
-            end
-        end,
         settings = {
             pylsp = {
                 configurationSources = { "flake8" },
@@ -119,16 +113,6 @@ return {
                     },
                 }
             },
-            ["rust-analyzer"] = {
-                lens = {
-                    enable = true,
-                },
-                hover = {
-                    links = {
-                        enable = false,
-                    }
-                }
-            },
             ["nil"] = {
                 formatting = {
                     command = { "alejandra" }
@@ -158,7 +142,7 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         local server_opts = {
-            on_attach = opts.on_attach,
+            on_attach = on_attach,
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
             settings = opts.settings,
         }
@@ -172,15 +156,6 @@ return {
                 lspconfig[server].setup(server_opts)
             end
         end
-        vim.g.rustaceanvim = {
-            server = {
-                on_attach = opts.on_attach,
-                default_settings = {
-                    ["rust-analyzer"] = opts.settings["rust-analyzer"],
-                }
-            },
-            dap = {}
-        }
         vim.lsp.inlay_hint.enable(true)
     end,
     dependencies = {
@@ -213,7 +188,30 @@ return {
             }
         },
         { "j-hui/fidget.nvim",          config = true },
-        { "mrcjkb/rustaceanvim",        ft = "rust" },
+        {
+            "mrcjkb/rustaceanvim",
+            opts = {
+                lens = {
+                    enable = true,
+                },
+                hover = {
+                    links = {
+                        enable = false,
+                    }
+                }
+            },
+            config = function(_, opts)
+                vim.g.rustaceanvim = {
+                    server = {
+                        on_attach = on_attach,
+                        default_settings = {
+                            ["rust-analyzer"] = opts,
+                        }
+                    },
+                    dap = {}
+                }
+            end
+        },
         { "barreiroleo/ltex_extra.nvim" }
     }
 }
