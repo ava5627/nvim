@@ -30,9 +30,12 @@ return {
                 { "<leader>dt", dap.terminate,   desc = "Terminate F8" },
                 { "<F8>",       dap.terminate,   desc = "Terminate" },
             }
-        end
-    },
+        end,
+        dependencies = {
+            "jay-babu/mason-nvim-dap.nvim",
 
+        }
+    },
     {
         "rcarriga/nvim-dap-ui",
         opts = {
@@ -73,4 +76,11 @@ return {
         }
     },
     { "theHamsta/nvim-dap-virtual-text", config = true },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        lazy = false,
+        opts = {
+            handlers = {}
+        }
+    },
 }
