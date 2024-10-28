@@ -158,11 +158,11 @@ lazy.setup({
         lazy = false,
         config = true,
         keys = function()
-            local todo = require("todo-comments")
+            -- local todo = require("todo-comments")
             return {
-                { "]t",        todo.jump_next,           desc = "Next todo" },
-                { "[t",        todo.jump_prev,           desc = "Previous todo" },
-                { "<leader>t", "<cmd>TodoTelescope<CR>", desc = "Search todos" },
+                -- { "]t",        todo.jump_next,           desc = "Next todo" },
+                -- { "[t",        todo.jump_prev,           desc = "Previous todo" },
+                { "<leader>ot", "<cmd>TodoTelescope<CR>", desc = "Search todos" },
             }
         end
     },

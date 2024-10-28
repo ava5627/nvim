@@ -86,8 +86,15 @@ return {
                     harpoon.add_file("init.lua")
                 elseif vim.loop.fs_stat("init.vim") then
                     harpoon.add_file("init.vim")
+                elseif vim.loop.fs_stat("default.nix") then
+                    harpoon.add_file("default.nix")
                 end
             end
+            -- local harpoon_ui = require("harpoon.ui")
+            -- if vim.fn.isdirectory(vim.fn.expand("%:p")) and harpoon.get_length() >= 1 then
+            --     require("nvim-tree.api").tree.open()
+            --     harpoon_ui.nav_file(1)
+            -- end
         end,
         keys = function()
             local telescope_harpoon = require("telescope").extensions.harpoon.marks

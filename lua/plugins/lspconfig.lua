@@ -100,7 +100,7 @@ return {
                     flake8 = {
                         enabled = true,
                         maxLineLength = 120,
-                        extendIgnore = { "E265", "E203" },
+                        extendIgnore = { "E265", "E203", "E741" },
                     },
                     rope_autoimport = {
                         enabled = false,
@@ -212,6 +212,39 @@ return {
                 }
             end
         },
-        { "barreiroleo/ltex_extra.nvim" }
+        { "barreiroleo/ltex_extra.nvim" },
+        {
+            "nvim-neotest/neotest",
+            opts = function()
+                return {
+                    adapters = {
+                        require("rustaceanvim.neotest"),
+                        require("neotest-python")
+                    }
+                }
+            end,
+            keys = function()
+                local neotest = require("neotest")
+                return {
+                    { "<leader>tt", function() neotest.run.run() end,                                    desc = "run nearest test" },
+                    { "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end,                  desc = "run file" },
+                    { "<leader>td", function() neotest.run.run({ suite = false, strategy = "dap" }) end, desc = "debug nearest test" },
+                    { "<leader>ts", function() neotest.summary.toggle() end,                             desc = "toggle summary" },
+                    { "<leader>to", function() neotest.output_panel.toggle() end,                        desc = "toggle output panel" },
+                    { "]f",         function() neotest.jump.next({ status = "failed" }) end,             desc = "jump to next failed test" },
+                    { "[f",         function() neotest.jump.prev({ status = "failed" }) end,             desc = "jump to previous failed test" },
+                    { "]t",         function() neotest.jump.next() end,                                  desc = "jump to next test" },
+                    { "[t",         function() neotest.jump.prev() end,                                  desc = "jump to previous test" },
+                }
+            end,
+            dependencies = {
+                "nvim-neotest/neotest-python",
+                "nvim-neotest/nvim-nio",
+                "nvim-lua/plenary.nvim",
+                "antoinemadec/FixCursorHold.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "mrcjkb/rustaceanvim",
+            }
+        },
     }
 }

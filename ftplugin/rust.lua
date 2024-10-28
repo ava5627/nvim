@@ -32,4 +32,4 @@ kmap("n", "gl", rust_lsp("renderDiagnostic"), opts("Current diagnostic"))
 kmap("n", "ge", rust_lsp("explainError"), opts("Explain error"))
 
 -- open cargo.toml
-kmap("n", "<A-b>", rust_lsp("openCargo"), opts("Open Cargo.toml"))
+-- kmap("n", "<A-b>", rust_lsp("openCargo"), opts("Open Cargo.toml"))
