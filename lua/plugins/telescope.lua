@@ -36,6 +36,7 @@ return {
                             ["<C-p>"] = actions.cycle_history_prev,
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-d>"] = actions.delete_buffer,
                             ["<C-S-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
                             ["<C-S-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
                             ["<A-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
@@ -49,7 +50,8 @@ return {
                 },
                 pickers = {
                     find_files = picker_theme,
-                    buffers = picker_theme
+                    buffers = picker_theme,
+                    git_status = picker_theme,
                 },
             }
         end,
