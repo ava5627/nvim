@@ -21,9 +21,10 @@ kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
 kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 
 -- navigation
--- kmap("n", "<A-e>", "ge", opts("Move to end of previous word"))
-kmap("n", "}", "<cmd>silent! normal! ^%j^<cr>", opts("Move to next paragraph", { silent = true }))
-kmap("n", "{", "k^%^", opts("Move to previous paragraph"))
+kmap("o", "ir", "i]", opts("inner ]"))
+kmap("o", "ar", "a]", opts("outer ]"))
+kmap("o", "iq", "i\"", opts("inner \""))
+kmap("o", "aq", "a\"", opts("outer \""))
 
 -- Clear search highlights
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
@@ -31,9 +32,9 @@ kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
 -- Insert line above/below without leaving normal mode
 kmap("n", "<a-i>", "moO<esc>`o", opts("Insert line above"))
 kmap("n", "<a-o>", "moo<esc>`o", opts("Insert line below"))
-kmap("n", "<a-I>", "moO<esc>", opts("Insert line above and move cursor"))
-kmap("n", "<a-O>", "moo<esc>", opts("Insert line below and move cursor"))
-kmap("i", "<a-CR>", "<CR>", opts("Insert newline without leaving insert mode"))
+kmap("n", "<a-I>", "O<esc>", opts("Insert line above and move cursor"))
+kmap("n", "<a-O>", "o<esc>", opts("Insert line below and move cursor"))
+kmap("i", "<a-CR>", "<C-o>o", opts("Insert newline without leaving insert mode"))
 
 -- Better window navigation
 kmap("n", "<C-h>", "<C-w>h", opts("Window left"))

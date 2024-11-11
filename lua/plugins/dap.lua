@@ -61,6 +61,7 @@ return {
             end
             dap.event_terminated["dapui_config"] = function()
                 dapui.close()
+                require("nvim-tree.api").tree.close()
                 require("nvim-tree.api").tree.toggle({ focus = false })
             end
         end,

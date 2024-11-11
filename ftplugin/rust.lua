@@ -1,5 +1,6 @@
 local function opts(desc, o)
-    local default = { desc = desc, remap = false }
+    ---@type vim.keymap.set.Opts
+    local default = { desc = desc, remap = false, buffer = true }
     return o and vim.tbl_extend("force", default, o) or default
 end
 
@@ -33,3 +34,5 @@ kmap("n", "ge", rust_lsp("explainError"), opts("Explain error"))
 
 -- open cargo.toml
 -- kmap("n", "<A-b>", rust_lsp("openCargo"), opts("Open Cargo.toml"))
+
+--

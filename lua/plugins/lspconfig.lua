@@ -156,9 +156,19 @@ return {
                 lspconfig[server].setup(server_opts)
             end
         end
-        vim.lsp.inlay_hint.enable(true)
     end,
     dependencies = {
+        {
+
+            "chrisgrieser/nvim-lsp-endhints",
+            event = "LspAttach",
+            config = true,
+            keys = function()
+                return {
+                    { "<leader>i", require("lsp-endhints").toggle, desc = "Toggle LSP end hints" },
+                }
+            end,
+        },
         {
             "folke/neodev.nvim",
             config = true,
@@ -198,10 +208,31 @@ return {
                     links = {
                         enable = false,
                     }
-                }
+                },
             },
             config = function(_, opts)
+                ---@type rustaceanvim.Executor
+                local toggleterm_exec = {
+                    execute_command = function(cmd, args, cwd, _)
+                        local Terminal = require("toggleterm.terminal").Terminal
+                        local shell = require("rustaceanvim.shell")
+                        local term = Terminal:new({
+                            dir = cwd,
+                            cmd = shell.make_command_from_args(cmd, args),
+                            close_on_exit = false,
+                            direction = "horizontal",
+                            on_open = function()
+                                require("nvim-tree.api").tree.close()
+                                require("nvim-tree.api").tree.toggle({ focus = false })
+                            end
+                        })
+                        term:toggle()
+                    end,
+                }
                 vim.g.rustaceanvim = {
+                    tools = {
+                        executor = toggleterm_exec,
+                    },
                     server = {
                         on_attach = on_attach,
                         default_settings = {

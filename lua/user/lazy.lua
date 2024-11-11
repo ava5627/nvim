@@ -76,7 +76,7 @@ lazy.setup({
             { "<leader>u", function() require('undotree').toggle() end, desc = "Toggle undotree" }
         },
     },
-    { "SmiteshP/nvim-navic",     opts = { highlight = true } },
+    { "SmiteshP/nvim-navic", opts = { highlight = true } },
     {
         "famiu/bufdelete.nvim",
         keys = {
@@ -102,6 +102,8 @@ lazy.setup({
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
         opts = { scope = { enabled = false } },
     },
     "stevearc/dressing.nvim",
@@ -110,7 +112,6 @@ lazy.setup({
         init = function() vim.notify = require("notify") end,
         opts = { render = "compact", max_height = 10, max_width = 100, timeout = 500 },
     },
-    "tpope/vim-surround",
     {
         "monaqa/dial.nvim",
         config = function()
@@ -137,7 +138,10 @@ lazy.setup({
             }
         end
     },
-    "tpope/vim-repeat",
+    {
+        "kylechui/nvim-surround",
+        config = true,
+    },
     {
         "norcalli/nvim-colorizer.lua",
         opts = { "*", css = { hsl_fn = true } },
@@ -199,11 +203,52 @@ lazy.setup({
             autopairs = { enable = true, },
             highlight = { enable = true, },
             indent = { enable = true, },
-        }
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["af"] = { query = "@function.outer", desc = "Outer function" },
+                        ["if"] = { query = "@function.inner", desc = "Inner function" },
+                    },
+                    selection_modes = {
+                        ['@parameter.outer'] = 'v', -- charwise
+                        ['@function.outer'] = 'V',  -- linewise
+                        ['@class.outer'] = '<c-v>', -- blockwise
+                    },
+                },
+                move = {
+                    enable = true,
+                    set_jumps = true,
+                    goto_next_start = {
+                        ["]m"] = { query = "@function.outer", desc = "Next function start" },
+                        -- ["]b"] = { query = "@attribute.outer", desc = "Next attribute"}
+                    },
+                    goto_next_end = {
+                        ["]M"] = { query = "@function.outer", desc = "Next function end" },
+                    },
+                    goto_previous_start = {
+                        ["[m"] = { query = "@function.outer", desc = "Previous function start" },
+                        -- ["[b"] = { query = "@attribute.outer", desc = "Previous attribute"}
+                    },
+                    goto_previous_end = {
+                        ["]M"] = { query = "@function.outer", desc = "Previous function end" },
+                    },
+                    goto_next = {
+                    }
+                },
+            },
+        },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            "nvim-treesitter/nvim-treesitter-refactor",
+        },
     },
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    "nvim-treesitter/nvim-treesitter-refactor",
-    { "Darazaki/indent-o-matic", config = true, },
+    {
+        'nmac427/guess-indent.nvim',
+        config = true,
+    },
     {
         "chrisgrieser/nvim-spider",
         keys = function()
