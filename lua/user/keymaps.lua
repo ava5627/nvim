@@ -21,10 +21,12 @@ kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
 kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 
 -- navigation
-kmap("o", "ir", "i]", opts("inner ]"))
-kmap("o", "ar", "a]", opts("outer ]"))
-kmap("o", "iq", "i\"", opts("inner \""))
-kmap("o", "aq", "a\"", opts("outer \""))
+kmap({ "o", "v", "x" }, "ir", "i]", opts("[] block"))
+kmap({ "o", "v", "x" }, "ar", "a]", opts("[] block"))
+kmap({ "o", "v", "x" }, "iq", "i\"", opts("\" string"))
+kmap({ "o", "v", "x" }, "aq", "a\"", opts("\" string"))
+
+kmap("c", "<A-Backspace>", "<C-w>", opts("Delete previous word"))
 
 -- Clear search highlights
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))

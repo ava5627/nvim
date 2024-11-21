@@ -129,9 +129,9 @@ return {
                         end
                         return sn(nil, { t("") })
                     end,
-                    {1}
+                    { 1 }
                 ),
-                c(1,{
+                c(1, {
                     t("[width=\\textwidth]"),
                     sn(nil, { t("[width="), i(1), t("]") }),
                     t("")
@@ -161,7 +161,7 @@ return {
         { condition = tex.in_math }
     ),
     s(
-        { trig = "([A-Za-z])#([a-zA-Z0-9])", dscr = "Index", trigEngine = "pattern", snippetType = "autosnippet"},
+        { trig = "([A-Za-z])#([a-zA-Z0-9])", dscr = "Index", trigEngine = "pattern", snippetType = "autosnippet" },
         fmta("<>^{(<>)}<>", { cp(1), cp(2), i(0) }),
         { condition = tex.in_math }
     ),

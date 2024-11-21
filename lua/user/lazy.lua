@@ -243,6 +243,24 @@ lazy.setup({
             "nvim-treesitter/nvim-treesitter-textobjects",
             "JoosepAlviste/nvim-ts-context-commentstring",
             "nvim-treesitter/nvim-treesitter-refactor",
+            {
+                "drybalka/tree-climber.nvim",
+                keys = function()
+                    local tree_climber = require("tree-climber")
+                    local hat = function(k)
+                        return function()
+                            vim.api.nvim_feedkeys("^", "n", true)
+                            k()
+                        end
+                    end
+                    return {
+                        { "}", hat(tree_climber.goto_next), desc = "Next sibling" },
+                        { "{", hat(tree_climber.goto_prev), desc = "Previous sibling" },
+                        -- { "][", tree_climber.goto_child,  desc = "Child" },
+                        -- { "[]", tree_climber.goto_parent, desc = "Parent" },
+                    }
+                end,
+            },
         },
     },
     {

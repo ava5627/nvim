@@ -44,9 +44,10 @@ return {
     s(
         {
             trig = [[([^f])("[^"]*{.)]],
+            dscr = "Auto fstring",
             wordTrig = false,
             trigEngine = "pattern",
-            snippetType = "autosnippet"
+            snippetType = "autosnippet",
         },
         fmta([[<>f<>]], { cp(1), cp(2) })
     ),
