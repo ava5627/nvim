@@ -26,7 +26,6 @@ return {
         renderer = {
             indent_markers = {
                 enable = true,
-                inline_arrows = true,
             },
             icons = {
                 git_placement = "after",

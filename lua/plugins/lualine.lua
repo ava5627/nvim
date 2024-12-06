@@ -52,8 +52,9 @@ return {
             "nvim-tree",
             "quickfix",
             "toggleterm",
-            "fugitive",
             "nvim-dap-ui",
+            "lazy",
+            "mason",
         },
     }
 }
