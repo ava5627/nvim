@@ -232,7 +232,7 @@ lazy.setup({
                         -- ["[b"] = { query = "@attribute.outer", desc = "Previous attribute"}
                     },
                     goto_previous_end = {
-                        ["]M"] = { query = "@function.outer", desc = "Previous function end" },
+                        ["[M"] = { query = "@function.outer", desc = "Previous function end" },
                     },
                     goto_next = {
                     }
