@@ -39,8 +39,8 @@ return {
                             ["<C-d>"] = actions.delete_buffer,
                             ["<C-S-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
                             ["<C-S-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
-                            ["<A-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 10) end,
-                            ["<A-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -10) end,
+                            ["<A-j>"] = function(b) require("telescope.actions.set").shift_selection(b, 5) end,
+                            ["<A-k>"] = function(b) require("telescope.actions.set").shift_selection(b, -5) end,
                         },
                         n = {
                             ["<C-j>"] = actions.move_selection_next,

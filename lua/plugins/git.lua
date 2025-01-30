@@ -12,10 +12,24 @@ return {
                 changedelete = { text = "▎" },
             },
         },
-        keys = {
-            { "]c", ":Gitsigns next_hunk<CR>", desc = "Next hunk" },
-            { "[c", ":Gitsigns prev_hunk<CR>", desc = "Previous hunk" },
-        }
+        keys = function()
+            local gitsigns = require("gitsigns")
+            local function nav_hunk(direction)
+                local key = direction == "next" and "]c" or "[c"
+                return function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ key, bang = true })
+                    else
+                        gitsigns.nav_hunk(direction)
+                    end
+                end
+            end
+            ---@type LazyKeysSpec[]
+            return {
+                { "]c", nav_hunk("next"), desc = "Next hunk" },
+                { "[c", nav_hunk("prev"), desc = "Previous hunk" }
+            }
+        end
     },
     {
 
@@ -26,6 +40,11 @@ return {
                 { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "close diffview" } }
             }
             return {
+                view = {
+                    merge_tool = {
+                        layout = "diff3_mixed"
+                    }
+                },
                 keymaps = {
                     view = quit,
                     file_panel = quit,
@@ -49,10 +68,12 @@ return {
             "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
         },
+        ---@type NeogitConfig
         opts = {
             commit_editor = {
                 kind = "vsplit",
-            }
+            },
+            graph_style = "kitty",
         },
         lazy = false,
         keys = function()

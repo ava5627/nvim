@@ -79,6 +79,13 @@ return {
             },
         },
         settings = {
+            Lua = {
+                workspace = {
+                    library = {
+                        ["~/.local/share/factorio_lib/"] = true,
+                    },
+                },
+            },
             pylsp = {
                 configurationSources = { "flake8" },
                 plugins = {
