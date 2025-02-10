@@ -120,16 +120,17 @@ return {
                     },
                 }
             },
-            ["nil"] = {
+            nixd = {
+                nixpkgs = {
+                    expr = "import <nixpkgs> {}"
+                },
                 formatting = {
                     command = { "alejandra" }
                 },
-                nix = {
-                    maxMemoryMB = 6144,
-                    flake = {
-                        autoArchive = true,
-                        autoEvalInputs = true,
-                    }
+                options = {
+                    nixos = {
+                        expr = "(builtins.getFlake \"" .. vim.fn.expand("~") .. "/nixfiles\").nixosConfigurations." .. vim.fn.hostname() .. ".config"
+                    },
                 }
             },
         },
@@ -156,6 +157,9 @@ return {
         local installed = mason_lspconfig.get_installed_servers()
         if vim.fn.executable("pylsp") and not vim.tbl_contains(installed, "pylsp") then
             table.insert(installed, "pylsp")
+        end
+        if vim.fn.executable("nixd") and not vim.tbl_contains(installed, "nixd") then
+            table.insert(installed, "nixd")
         end
 
         for _, server in pairs(installed) do
