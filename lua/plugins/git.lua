@@ -36,9 +36,9 @@ return {
         "sindrets/diffview.nvim",
         lazy = false,
         opts = function()
-            local quit = {
-                { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "close diffview" } }
-            }
+            local actions = require("diffview.actions")
+            local quit = { "n", "q", actions.close, { desc = "close diffview" } }
+
             return {
                 view = {
                     merge_tool = {
@@ -46,9 +46,16 @@ return {
                     }
                 },
                 keymaps = {
-                    view = quit,
-                    file_panel = quit,
-                    file_history_panel = quit
+                    view = { quit },
+                    file_panel = { quit },
+                    file_history_panel = { quit },
+                    diff3 = {
+                        -- Mappings in 3-way diff layouts
+                        { { "n", "x" }, "dh", actions.diffget("ours"),               { desc = "Obtain the diff hunk from the OURS version of the file" } },
+                        { { "n", "x" }, "dl", actions.diffget("theirs"),             { desc = "Obtain the diff hunk from the THEIRS version of the file" } },
+                        { { "n", "x" }, "dH", actions.conflict_choose_all("ours"),   { desc = "Choose the OURS version of a conflict for the whole file" } },
+                        { { "n", "x" }, "dL", actions.conflict_choose_all("theirs"), { desc = "Choose the THEIRS version of a conflict for the whole file" } },
+                    },
                 }
             }
         end,
