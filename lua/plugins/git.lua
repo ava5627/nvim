@@ -26,8 +26,9 @@ return {
             end
             ---@type LazyKeysSpec[]
             return {
-                { "]c", nav_hunk("next"), desc = "Next hunk" },
-                { "[c", nav_hunk("prev"), desc = "Previous hunk" }
+                { "]c",         nav_hunk("next"), desc = "Next hunk" },
+                { "[c",         nav_hunk("prev"), desc = "Previous hunk" },
+                { "<leader>gb", gitsigns.blame,   desc = "Git blame" },
             }
         end
     },
@@ -89,14 +90,5 @@ return {
                 { "<leader>gs", neogit.open, desc = "Git status" },
             }
         end
-    },
-    {
-        "FabijanZulj/blame.nvim",
-        lazy = false,
-        config = true,
-        keys = {
-            { "<leader>gb", "<cmd>BlameToggle<CR>",         desc = "Git Blame" },
-            { "<leader>gB", "<cmd>BlameToggle virtual<CR>", desc = "Git Blame Virtual Text" }
-        }
     },
 }

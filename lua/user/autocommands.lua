@@ -5,7 +5,7 @@ local kmap = vim.keymap.set
 augroup("easy_quit", {})
 autocmd("FileType", {
     group = "easy_quit",
-    pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "fugitive", "gitcommit", "git", "toggleterm", "checkhealth", "neotest-*" },
+    pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "fugitive", "gitcommit", "git", "toggleterm", "checkhealth", "neotest-*", "gitsigns-blame" },
     callback = function()
         kmap("n", "q", ":close<CR>", { silent = true, noremap = true, buffer = true })
     end,
