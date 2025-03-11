@@ -1,9 +1,9 @@
 ---@alias Colorscheme
----| '"Toko Night"'
+---| '"Tokyo Night"'
 ---| '"Catppuccin"'
 
 ---@type Colorscheme
-local colorscheme = os.getenv("COLORSCHEME") or "Toko Night"
+local colorscheme = os.getenv("COLORSCHEME") or "Tokyo Night"
 
 ---@type LazyPluginSpec[]
 return {
