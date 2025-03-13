@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 -- Automatically install lazy.nvim if not found
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
