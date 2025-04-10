@@ -171,10 +171,7 @@ lazy.setup({
         lazy = false,
         config = true,
         keys = function()
-            -- local todo = require("todo-comments")
             return {
-                -- { "]t",        todo.jump_next,           desc = "Next todo" },
-                -- { "[t",        todo.jump_prev,           desc = "Previous todo" },
                 { "<leader>ot", "<cmd>TodoTelescope<CR>", desc = "Search todos" },
             }
         end
@@ -231,20 +228,16 @@ lazy.setup({
                     set_jumps = true,
                     goto_next_start = {
                         ["]m"] = { query = "@function.outer", desc = "Next function start" },
-                        -- ["]b"] = { query = "@attribute.outer", desc = "Next attribute"}
                     },
                     goto_next_end = {
                         ["]M"] = { query = "@function.outer", desc = "Next function end" },
                     },
                     goto_previous_start = {
                         ["[m"] = { query = "@function.outer", desc = "Previous function start" },
-                        -- ["[b"] = { query = "@attribute.outer", desc = "Previous attribute"}
                     },
                     goto_previous_end = {
                         ["[M"] = { query = "@function.outer", desc = "Previous function end" },
                     },
-                    goto_next = {
-                    }
                 },
             },
         },
@@ -263,10 +256,10 @@ lazy.setup({
                         end
                     end
                     return {
-                        { "}", hat(tree_climber.goto_next), desc = "Next sibling" },
                         { "{", hat(tree_climber.goto_prev), desc = "Previous sibling" },
-                        -- { "][", tree_climber.goto_child,  desc = "Child" },
-                        -- { "[]", tree_climber.goto_parent, desc = "Parent" },
+                        { "}", hat(tree_climber.goto_next), desc = "Next sibling" },
+                        { "]s", tree_climber.goto_child,  desc = "Child" },
+                        { "[s", tree_climber.goto_parent, desc = "Parent" },
                     }
                 end,
             },

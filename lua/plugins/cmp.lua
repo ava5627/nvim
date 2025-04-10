@@ -51,7 +51,6 @@ return {
                 ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(5), { "i", "c" }),
                 ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-5), { "i", "c" }),
                 ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-                ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
                 ["<C-e>"] = cmp.mapping.abort(),
                 -- Accept currently selected item. If none selected, `select` first item.
                 -- Set `select` to `false` to only confirm explicitly selected items.

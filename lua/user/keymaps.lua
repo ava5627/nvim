@@ -32,8 +32,8 @@ kmap("c", "<A-Backspace>", "<C-w>", opts("Delete previous word"))
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
 
 -- Insert line above/below without leaving normal mode
-kmap("n", "<a-i>", "moO<esc>`o", opts("Insert line above"))
-kmap("n", "<a-o>", "moo<esc>`o", opts("Insert line below"))
+kmap("n", "<a-i>", "[<space>", opts("Insert line above", { remap = true }))
+kmap("n", "<a-o>", "]<space>", opts("Insert line below", { remap = true }))
 kmap("n", "<a-I>", "O<esc>", opts("Insert line above and move cursor"))
 kmap("n", "<a-O>", "o<esc>", opts("Insert line below and move cursor"))
 kmap("i", "<a-CR>", "<C-o>o", opts("Insert newline without leaving insert mode"))

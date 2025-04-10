@@ -24,13 +24,12 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     keys = {
-        { "gD",         vim.lsp.buf.declaration,    desc = "Go to declaration" },
-        { "gs",         vim.lsp.buf.signature_help, desc = "Signature help" },
-        { "gh",         vim.lsp.buf.hover,          desc = "Hover" },
-        { "grn",        vim.lsp.buf.rename,         desc = "Rename" },
-        { "ga",         vim.lsp.buf.code_action,    desc = "Code Action" },
-        { "<C-g><C-k>", vim.lsp.buf.signature_help, desc = "Signature help" },
-        { "<A-f>",      vim.lsp.buf.format,         desc = "Format" },
+        { "gD",    vim.lsp.buf.declaration,                                              desc = "Go to declaration" },
+        { "gs",    function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, desc = "Signature help" },
+        { "C-s",   function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, desc = "Signature help",   mode = { "i", "s" } },
+        { "gh",    vim.lsp.buf.hover,                                                    desc = "Hover" },
+        { "ga",    vim.lsp.buf.code_action,                                              desc = "Code Action" },
+        { "<A-f>", vim.lsp.buf.format,                                                   desc = "Format" },
         {
             "<leader>gv",
             function()
@@ -40,19 +39,16 @@ return {
             desc = "Toggle virtual text"
         },
         {
-            "[d",
-            function() vim.diagnostic.goto_prev({ border = "rounded" }) end,
-            desc = "Go to previous diagnostic"
+            "<leader>gk",
+            function()
+                local vl = vim.diagnostic.config()["virtual_lines"]
+                vim.diagnostic.config({ virtual_lines = not vl })
+            end,
         },
         {
             "gl",
             function() vim.diagnostic.open_float({ border = "rounded" }) end,
             desc = "Open diagnostic window"
-        },
-        {
-            "]d",
-            function() vim.diagnostic.goto_next({ border = "rounded" }) end,
-            desc = "Go to next diagnostic"
         },
     },
     opts = {
@@ -129,7 +125,8 @@ return {
                 },
                 options = {
                     nixos = {
-                        expr = "(builtins.getFlake \"" .. vim.fn.expand("~") .. "/nixfiles\").nixosConfigurations." .. vim.fn.hostname() .. ".config"
+                        expr = "(builtins.getFlake \"" ..
+                            vim.fn.expand("~") .. "/nixfiles\").nixosConfigurations." .. vim.fn.hostname() .. ".config"
                     },
                 }
             },
@@ -137,12 +134,6 @@ return {
     },
     config = function(_, opts)
         vim.diagnostic.config(opts.diagnostics)
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = "rounded",
-        })
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            border = "rounded",
-        })
         for _, sign in pairs(opts.diagnostics.signs.active) do
             vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
         end
@@ -169,6 +160,7 @@ return {
         end
     end,
     dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
         {
 
             "chrisgrieser/nvim-lsp-endhints",
