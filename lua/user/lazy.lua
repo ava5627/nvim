@@ -145,7 +145,15 @@ lazy.setup({
     },
     {
         "norcalli/nvim-colorizer.lua",
-        opts = { "*", css = { hsl_fn = true } },
+        opts = {
+            "*",
+            css = {
+                hsl = true,
+                hsl_fn = true,
+                css = true,
+                css_fn = true,
+            }
+        },
     },
     {
         "lervag/vimtex",
