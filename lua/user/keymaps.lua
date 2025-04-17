@@ -20,6 +20,29 @@ kmap("n", "<A-q>", "<cmd>bdelete<CR>", opts("Close buffer"))
 kmap("n", "<leader>we", "<cmd>checktime<CR>", opts("Reload buffer"))
 kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 
+-- lsp
+kmap("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
+kmap("n", "gs", function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, opts("Signature help"))
+kmap("n", "gh", vim.lsp.buf.hover, opts("Hover"))
+kmap("n", "ga", vim.lsp.buf.code_action, opts("Code Action"))
+kmap("n", "<A-f>", vim.lsp.buf.format, opts("Format"))
+kmap("n", "gl", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts("Open diagnostic window"))
+kmap({ "i", "s" }, "C-s", function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, opts("Signature help"))
+kmap("n", "gv",
+    function()
+        local vt = vim.diagnostic.config()["virtual_text"]
+        vim.diagnostic.config({ virtual_text = not vt })
+    end,
+    opts("Toggle virtual text")
+)
+kmap("n", "gk",
+    function()
+        local vl = vim.diagnostic.config()["virtual_lines"]
+        vim.diagnostic.config({ virtual_lines = not vl })
+    end,
+    opts("Toggle virtual lines")
+)
+
 -- navigation
 kmap({ "o", "v", "x" }, "ir", "i]", opts("[] block"))
 kmap({ "o", "v", "x" }, "ar", "a]", opts("[] block"))

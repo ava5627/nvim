@@ -122,6 +122,9 @@ return {
             sources = cmp.config.sources({ { name = "path" }, }, { { name = "cmdline" } }),
         })
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+        vim.lsp.config("*", {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
     end,
     dependencies = {
         "hrsh7th/cmp-buffer",

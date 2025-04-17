@@ -30,7 +30,6 @@ return {
         },
         spec = {
             {
-                { "<leader>g", group = "code" },
                 { "<leader>a", group = "select", icon = " " },
                 { "<leader>d", group = "dap" },
                 { "<leader>w", group = "window" },
