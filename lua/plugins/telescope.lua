@@ -78,17 +78,17 @@ return {
             require("telescope").load_extension("harpoon")
             local harpoon = require("harpoon.mark")
             if harpoon.get_length() == 0 then
-                if vim.loop.fs_stat("src/main.rs") then
+                if vim.uv.fs_stat("src/main.rs") then
                     harpoon.add_file("src/main.rs")
-                elseif vim.loop.fs_stat("main.py") then
+                elseif vim.uv.fs_stat("main.py") then
                     harpoon.add_file("main.py")
-                elseif vim.loop.fs_stat("src/main.py") then
+                elseif vim.uv.fs_stat("src/main.py") then
                     harpoon.add_file("src/main.py")
-                elseif vim.loop.fs_stat("init.lua") then
+                elseif vim.uv.fs_stat("init.lua") then
                     harpoon.add_file("init.lua")
-                elseif vim.loop.fs_stat("init.vim") then
+                elseif vim.uv.fs_stat("init.vim") then
                     harpoon.add_file("init.vim")
-                elseif vim.loop.fs_stat("default.nix") then
+                elseif vim.uv.fs_stat("default.nix") then
                     harpoon.add_file("default.nix")
                 end
             end

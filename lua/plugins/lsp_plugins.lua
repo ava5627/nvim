@@ -13,8 +13,16 @@ return {
         end,
     },
     {
-        "folke/neodev.nvim",
-        config = true,
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                "~/.local/share/factorio_lib/",
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
     {
         "williamboman/mason.nvim",

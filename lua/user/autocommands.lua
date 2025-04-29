@@ -9,6 +9,7 @@ autocmd("FileType", {
     callback = function()
         kmap("n", "q", ":close<CR>", { silent = true, noremap = true, buffer = true })
     end,
+    desc = "map q to close for certain filetypes",
 })
 
 -- Yank
@@ -17,11 +18,9 @@ autocmd("TextYankPost", {
     group = "HighlightYank",
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 40,
-        })
+        vim.hl.on_yank({ timeout = 40 })
     end,
+    desc = "Highlight on yank",
 })
 
 -- Remove trailing whitespace
@@ -38,14 +37,5 @@ autocmd("BufWritePre", {
             %s/\s\+$//e
         ]])
     end,
-})
-
-augroup("neogit", {})
-autocmd("FileType", {
-    group = "neogit",
-    pattern = { "NeogitStatus" },
-    callback = function()
-        kmap("n", ")", "}j", { silent = true, noremap = true, buffer = true })
-        kmap("n", "(", "{{j", { silent = true, noremap = true, buffer = true })
-    end
+    desc = "Trim trailing whitespace"
 })

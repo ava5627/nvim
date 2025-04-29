@@ -64,11 +64,11 @@ return {
                     vim_item.menu = ({
                         nvim_lsp = "[LSP]",
                         cmp_tabnine = "[TAB9]",
-                        nvim_lua = "[LUA]",
+                        lazydev = "[LUA]",
                         luasnip = "[LSnippet]",
                         buffer = "[Buffer]",
                         path = "[Path]",
-                        spell = "[Spelling]",
+                        spell = "[Spell]",
                     })[entry.source.name]
                     return vim_item
                 end,
@@ -81,7 +81,7 @@ return {
                 { name = "nvim_lsp" },
                 { name = "cmp_tabnine" },
                 { name = "luasnip" },
-                { name = "nvim_lua" },
+                { name = "lazydev" },
                 { name = "buffer" },
                 { name = "spell" },
                 { name = "path" },
@@ -132,7 +132,7 @@ return {
         "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua",
+        "f3fora/cmp-spell",
         {
             "tzachar/cmp-tabnine",
             build = "./install.sh",

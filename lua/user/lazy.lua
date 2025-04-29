@@ -1,7 +1,7 @@
 ---@diagnostic disable: missing-fields
 -- Automatically install lazy.nvim if not found
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.notify("Installing lazy.nvim", vim.log.levels.INFO)
     vim.fn.system({
         "git",
@@ -55,7 +55,6 @@ lazy.setup({
             },
         },
     },
-    "f3fora/cmp-spell",
     {
         "windwp/nvim-autopairs",
         opts = {
