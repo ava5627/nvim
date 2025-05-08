@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazyPluginSpec[]
 return {
     {
@@ -40,6 +41,7 @@ return {
             local actions = require("diffview.actions")
             local quit = { "n", "q", actions.close, { desc = "close diffview" } }
 
+            ---@type DiffviewConfig
             return {
                 view = {
                     merge_tool = {
@@ -62,6 +64,7 @@ return {
         end,
         keys = function()
             local diffview = require("diffview")
+            ---@type LazyKeysSpec[]
             return {
                 { "<leader>gd", diffview.open,                                      desc = "open diff" },
                 { "<leader>gh", diffview.file_history,                              desc = "open history" },
@@ -86,6 +89,7 @@ return {
         lazy = false,
         keys = function()
             local neogit = require("neogit")
+            ---@type LazyKeysSpec[]
             return {
                 { "<leader>gs", neogit.open, desc = "Git status" },
             }

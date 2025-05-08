@@ -1,3 +1,4 @@
+---@module "lazy"
 local picker_theme = {
     previewer = false,
     sorting_strategy = "ascending",

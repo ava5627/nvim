@@ -1,5 +1,5 @@
----@module 'tokyonight'
----@module 'catppuccin'
+---@module "tokyonight"
+---@module "catppuccin"
 ---@alias Colorscheme
 ---| '"Tokyo Night"'
 ---| '"Catppuccin"'

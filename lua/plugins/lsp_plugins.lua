@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazyPluginSpec[]|string[]
 return {
     { "neovim/nvim-lspconfig", lazy = false, },
@@ -7,6 +8,7 @@ return {
         event = "LspAttach",
         config = true,
         keys = function()
+            ---@type LazyKeysSpec[]
             return {
                 { "<leader>i", require("lsp-endhints").toggle, desc = "Toggle LSP end hints" },
             }

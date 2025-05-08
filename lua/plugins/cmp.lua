@@ -1,3 +1,5 @@
+---@module "lazy"
+
 -- 󰃐 󰆩 󰙅 󰛡   󰅲 some other good icons
 local kind_icons = {
     Text          = "󰉿 ",
@@ -35,6 +37,7 @@ return {
         local cmp = require("cmp")
         local compare = require("cmp.config.compare")
         local luasnip = require("luasnip")
+        ---@type cmp.ConfigSchema
         return {
             snippet = {
                 expand = function(args)
