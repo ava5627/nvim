@@ -1,3 +1,4 @@
+---@module 'which-key'
 ---@type LazyPluginSpec
 return {
     "folke/which-key.nvim",

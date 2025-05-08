@@ -28,14 +28,14 @@ kmap("n", "ga", vim.lsp.buf.code_action, opts("Code Action"))
 kmap("n", "<A-f>", vim.lsp.buf.format, opts("Format"))
 kmap("n", "gl", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts("Open diagnostic window"))
 kmap({ "i", "s" }, "C-s", function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, opts("Signature help"))
-kmap("n", "gv",
+kmap("n", "<leader>gv",
     function()
         local vt = vim.diagnostic.config()["virtual_text"]
         vim.diagnostic.config({ virtual_text = not vt })
     end,
     opts("Toggle virtual text")
 )
-kmap("n", "gk",
+kmap("n", "<leader>gk",
     function()
         local vl = vim.diagnostic.config()["virtual_lines"]
         vim.diagnostic.config({ virtual_lines = not vl })
