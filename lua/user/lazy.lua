@@ -153,6 +153,10 @@ lazy.setup({
                 css_fn = true,
             }
         },
+        lazy = false,
+        keys = {
+            { "<leader>cr", function() require("colorizer").reload_all_buffers() end, desc = "Toggle colorizer" },
+        }
     },
     {
         "lervag/vimtex",
