@@ -38,6 +38,11 @@ return {
                 "jsonls",
                 "lua_ls",
                 "bashls",
+            },
+            automatic_enable = {
+                exclude = {
+                    "rust_analyzer",
+                },
             }
         }
     },
@@ -54,17 +59,7 @@ return {
     { "j-hui/fidget.nvim",     config = true },
     {
         "mrcjkb/rustaceanvim",
-        opts = {
-            lens = {
-                enable = true,
-            },
-            hover = {
-                links = {
-                    enable = false,
-                }
-            },
-        },
-        config = function(_, opts)
+        init = function()
             ---@type rustaceanvim.Executor
             local toggleterm_exec = {
                 execute_command = function(cmd, args, cwd, _)
@@ -86,11 +81,6 @@ return {
             vim.g.rustaceanvim = {
                 tools = {
                     executor = toggleterm_exec,
-                },
-                server = {
-                    default_settings = {
-                        ["rust-analyzer"] = opts,
-                    }
                 },
             }
         end
