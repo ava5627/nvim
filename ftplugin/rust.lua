@@ -29,7 +29,7 @@ kmap("n", "<F1>", rust_lsp({ "runnables", bang = true }), opts("Previous run"))
 kmap("n", "<F2>", rust_lsp({ "runnables" }), opts("Run"))
 
 -- diagnostics
-kmap("n", "gl", rust_lsp("renderDiagnostic"), opts("Current diagnostic"))
+kmap("n", "gL", rust_lsp("renderDiagnostic"), opts("Current diagnostic"))
 kmap("n", "ge", rust_lsp("explainError"), opts("Explain error"))
 
 -- open cargo.toml

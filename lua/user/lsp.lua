@@ -11,7 +11,7 @@ if vim.fn.executable("nixd") and not vim.tbl_contains(installed, "nixd") then
 end
 
 for _, server in pairs(installed) do
-    if server ~= "rust_analyzer" then
+    if server ~= "rust-analyzer" then
         vim.lsp.enable(server)
     end
 end
