@@ -16,13 +16,10 @@ return {
                 enable = true,
                 lookahead = true,
                 keymaps = {
-                    ["af"] = { query = "@function.outer", desc = "Outer function" },
-                    ["if"] = { query = "@function.inner", desc = "Inner function" },
-                },
-                selection_modes = {
-                    ['@parameter.outer'] = 'v', -- charwise
-                    ['@function.outer'] = 'V',  -- linewise
-                    ['@class.outer'] = '<c-v>', -- blockwise
+                    ["am"] = { query = "@function.outer", desc = "Outer function" },
+                    ["im"] = { query = "@function.inner", desc = "Inner function" },
+                    ["ia"] = { query = "@parameter.inner", desc = "Inner parameter" },
+                    ["aa"] = { query = "@parameter.outer", desc = "outer parameter" },
                 },
             },
             move = {
