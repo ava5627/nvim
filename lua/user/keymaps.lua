@@ -23,11 +23,14 @@ kmap("n", "<leader>f", "<cmd>q!<CR>", opts("force close buffer"))
 -- lsp
 kmap("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
 kmap("n", "gs", function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, opts("Signature help"))
-kmap("n", "gh", vim.lsp.buf.hover, opts("Hover"))
+kmap("n", "gh", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts("Hover"))
 kmap("n", "ga", vim.lsp.buf.code_action, opts("Code Action"))
 kmap("n", "<A-f>", vim.lsp.buf.format, opts("Format"))
 kmap("n", "gl", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts("Open diagnostic window"))
-kmap({ "i", "s" }, "C-s", function() vim.lsp.buf.signature_help({ anchor_bias = "above" }) end, opts("Signature help"))
+kmap({ "i", "s" }, "<C-s>",
+    function() vim.lsp.buf.signature_help({ border = "rounded", anchor_bias = "above" }) end,
+    opts("Signature help")
+)
 kmap("n", "<leader>gv",
     function()
         local vt = vim.diagnostic.config()["virtual_text"]
@@ -50,6 +53,10 @@ kmap({ "o", "v", "x" }, "iq", "i\"", opts("\" string"))
 kmap({ "o", "v", "x" }, "aq", "a\"", opts("\" string"))
 
 kmap("c", "<A-Backspace>", "<C-w>", opts("Delete previous word"))
+kmap({ "c", "i" }, "<A-h>", "<C-left>", opts("Move cursor left"))
+kmap({ "c", "i" }, "<A-j>", "<C-down>", opts("Move cursor down"))
+kmap({ "c", "i" }, "<A-k>", "<C-up>", opts("Move cursor up"))
+kmap({ "c", "i" }, "<A-l>", "<C-right>", opts("Move cursor right"))
 
 -- Clear search highlights
 kmap("n", "<A-a>", "<cmd>nohl<CR>", opts("Clear search highlights"))
@@ -84,12 +91,6 @@ kmap("n", "<A-Right>", "<cmd>vertical resize -5<CR>", opts("Resize window right"
 -- Open windows
 kmap("n", "<leader>v", "<C-w>v", opts("Open vertical window"))
 kmap("n", "<leader>s", "<C-w>s", opts("Open horizontal window"))
-
--- Insert Mode
-kmap("i", "<A-h>", "<left>", opts("Move cursor left"))
-kmap("i", "<A-j>", "<down>", opts("Move cursor down"))
-kmap("i", "<A-k>", "<up>", opts("Move cursor up"))
-kmap("i", "<A-l>", "<right>", opts("Move cursor right"))
 
 -- Paste in insert mode
 kmap("i", "<C-p>", "<left><C-o>p", opts("Paste"))
