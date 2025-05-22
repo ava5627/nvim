@@ -1,4 +1,5 @@
 ---@module "lazy"
+
 local function on_attach(bufnr)
     local nt_api = require("nvim-tree.api")
     local function opts(desc, o)
