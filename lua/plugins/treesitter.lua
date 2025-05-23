@@ -62,8 +62,8 @@ return {
                     end
                 end
                 return {
-                    { "[[", hat(tree_climber.goto_prev), desc = "Previous sibling" },
-                    { "]]", hat(tree_climber.goto_next), desc = "Next sibling" },
+                    { "[r", hat(tree_climber.goto_prev), desc = "Previous sibling" },
+                    { "]r", hat(tree_climber.goto_next), desc = "Next sibling" },
                     { "]s", tree_climber.goto_child,     desc = "Child" },
                     { "[s", tree_climber.goto_parent,    desc = "Parent" },
                 }

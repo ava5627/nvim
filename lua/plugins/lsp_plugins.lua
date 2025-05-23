@@ -2,7 +2,6 @@
 ---@type LazyPluginSpec[]|string[]
 return {
     { "neovim/nvim-lspconfig", lazy = false, },
-    "hrsh7th/cmp-nvim-lsp",
     {
         "chrisgrieser/nvim-lsp-endhints",
         event = "LspAttach",
@@ -88,7 +87,7 @@ return {
     {
         "barreiroleo/ltex_extra.nvim",
         init = function()
-            vim.lsp.config("ltex", {
+            vim.lsp.config("ltex_plus", {
                 on_attach = function(_, _)
                     require("ltex_extra").setup({
                         path = vim.fn.stdpath("data") .. "/ltex",
