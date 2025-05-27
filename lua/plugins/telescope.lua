@@ -1,4 +1,5 @@
 ---@module "lazy"
+
 local picker_theme = {
     previewer = false,
     sorting_strategy = "ascending",
@@ -19,7 +20,7 @@ local picker_theme = {
 return {
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        -- branch = "0.1.x",
         lazy = false,
         opts = function()
             local actions = require("telescope.actions")
