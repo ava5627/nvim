@@ -12,22 +12,26 @@ local fmta = require("luasnip.extras.fmt").fmta
 -- local rep = require("luasnip.extras").rep
 -- local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local function cp(index) return f(function(_, snip) return snip.captures[index] end) end
+local postfix = require("luasnip.extras.postfix").postfix
+local l = require("luasnip.extras").lambda
 
-local function postfix(func)
-    return s(
+local function pf(funcname, trig)
+    if not trig then
+        trig = funcname
+    end
+    return postfix(
         {
-            trig = "([^%s]+)%." .. func,
-            trigEngine = "pattern",
-            dscr = "Auto " .. func,
+            trig = "." .. trig,
+            dscr = "Postfix " .. funcname,
             snippetType = "autosnippet",
-        },
-        fmta(func .. [[(<>)]], { cp(1) })
-    )
+        }, {
+        l(funcname .. "(" .. l.POSTFIX_MATCH .. ")")
+    })
 end
 
 return {
-    postfix("len"),
-    postfix("reversed"),
+    pf("len"),
+    pf("reversed", "rev"),
     s(
         {
             trig = "for (.+) in (.+)%.enum",

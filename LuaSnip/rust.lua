@@ -18,7 +18,7 @@ return {
             function(args)
                 local nodes = {}
                 local n = 1
-                for _ in string.gmatch(args[1][1], "{}") do
+                for _ in string.gmatch(args[1][1], "{[^}]*}") do
                     nodes[#nodes + 1] = t(", ")
                     nodes[#nodes + 1] = i(n, "arg" .. n)
                     n = n + 1
