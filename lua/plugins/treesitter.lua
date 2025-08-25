@@ -62,10 +62,10 @@ return {
                     end
                 end
                 return {
-                    { "[r", hat(tree_climber.goto_prev), desc = "Previous sibling" },
-                    { "]r", hat(tree_climber.goto_next), desc = "Next sibling" },
-                    { "]s", tree_climber.goto_child,     desc = "Child" },
-                    { "[s", tree_climber.goto_parent,    desc = "Parent" },
+                    { "[r", hat(tree_climber.goto_prev), desc = "Previous sibling", mode = { "n", "v", "o" } },
+                    { "]r", hat(tree_climber.goto_next), desc = "Next sibling", mode = { "n", "v", "o" } },
+                    { "]s", tree_climber.goto_child,     desc = "Child", mode = { "n", "v", "o" } },
+                    { "[s", tree_climber.goto_parent,    desc = "Parent", mode = { "n", "v", "o" } },
                 }
             end,
         },
