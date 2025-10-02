@@ -39,7 +39,8 @@ return {
         lazy = false,
         opts = function()
             local actions = require("diffview.actions")
-            local quit = { "n", "q", actions.close, { desc = "close diffview" } }
+            local diffview = require("diffview")
+            local quit = { "n", "q", diffview.close, { desc = "close diffview" } }
 
             ---@type DiffviewConfig
             return {
