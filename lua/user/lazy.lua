@@ -100,6 +100,28 @@ lazy.setup({
         }
     },
     {
+        "y3owk1n/warp.nvim",
+        ---@type Warp.Config
+        opts = {
+            window = {
+                list = {
+                    border = "rounded",
+                },
+            },
+        },
+        keys = function()
+            local warp = require("warp")
+            return {
+                { "<leader>oh", warp.show_list,                    desc = "Warp marks" },
+                { "<leader>m",  warp.add,                          desc = "Add file to warp" },
+                { "<A-z>",      function() warp.goto_index(1) end, desc = "Open warp 1" },
+                { "<A-x>",      function() warp.goto_index(2) end, desc = "Open warp 2" },
+                { "<A-c>",      function() warp.goto_index(3) end, desc = "Open warp 3" },
+                { "<A-v>",      function() warp.goto_index(4) end, desc = "Open warp 4" },
+            }
+        end,
+    },
+    {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         ---@module "ibl"
