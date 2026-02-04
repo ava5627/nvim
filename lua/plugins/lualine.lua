@@ -1,4 +1,5 @@
 ---@module "lazy"
+
 local function indent_width()
     return vim.api.nvim_get_option_value("shiftwidth", { buf = 0 }) or ""
 end
