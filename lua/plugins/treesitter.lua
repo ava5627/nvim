@@ -3,6 +3,7 @@
 ---@type LazyPluginSpec
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
     lazy = false,
@@ -23,7 +24,7 @@ return {
                 },
             },
             move = {
-                enable = true,
+                enable = false, -- broken for some reason, treesitter plugin archived because of drama, look for alternatives eventually
                 set_jumps = true,
                 goto_next_start = {
                     ["]m"] = { query = "@function.outer", desc = "Next function start" },
@@ -63,9 +64,9 @@ return {
                 end
                 return {
                     { "[r", hat(tree_climber.goto_prev), desc = "Previous sibling", mode = { "n", "v", "o" } },
-                    { "]r", hat(tree_climber.goto_next), desc = "Next sibling", mode = { "n", "v", "o" } },
-                    { "]s", tree_climber.goto_child,     desc = "Child", mode = { "n", "v", "o" } },
-                    { "[s", tree_climber.goto_parent,    desc = "Parent", mode = { "n", "v", "o" } },
+                    { "]r", hat(tree_climber.goto_next), desc = "Next sibling",     mode = { "n", "v", "o" } },
+                    { "]s", tree_climber.goto_child,     desc = "Child",            mode = { "n", "v", "o" } },
+                    { "[s", tree_climber.goto_parent,    desc = "Parent",           mode = { "n", "v", "o" } },
                 }
             end,
         },
