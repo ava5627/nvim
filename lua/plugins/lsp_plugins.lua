@@ -55,7 +55,16 @@ return {
             hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
         }
     },
-    { "j-hui/fidget.nvim",     config = true },
+    {
+        "j-hui/fidget.nvim",
+        opts = {
+            notification = {
+                window = {
+                    avoid = { "NvimTree" },
+                }
+            }
+        }
+    },
     {
         "mrcjkb/rustaceanvim",
         init = function()
