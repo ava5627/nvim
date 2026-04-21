@@ -1,10 +1,10 @@
 vim.lsp.config("*", {
     capabilities = vim.lsp.protocol.make_client_capabilities(),
 })
-if vim.fn.executable("pylsp") then
+if vim.fn.executable("pylsp") == 1 then
     vim.lsp.enable("pylsp")
 end
-if vim.fn.executable("nixd") then
+if vim.fn.executable("nixd") == 1 then
     vim.lsp.enable("nixd")
 end
 
