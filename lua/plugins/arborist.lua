@@ -4,5 +4,11 @@
 return {
     "arborist-ts/arborist.nvim",
     lazy = false,
-    config = true,
+    opts = {
+        disable = {
+            highlight = {
+                "latex",
+            }
+        }
+    }
 }
